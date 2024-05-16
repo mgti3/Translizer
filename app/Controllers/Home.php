@@ -8,4 +8,9 @@ class Home extends BaseController
     {
         return view("admin_dashboard");
     }
+
+    public function adminTeamManagement(): string
+    {
+        return view("admin_team_management");
+    }
 }
