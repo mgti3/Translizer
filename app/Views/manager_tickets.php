@@ -12,7 +12,7 @@
 
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card  my-3">
-                <div class="card-header headerColor">
+                <div class="card-header bg-light">
                     <h5 class="card-title mb-0">Ticket #12345: Document Mistranslation</h5>
                 </div>
                 <div class="card-body">
@@ -48,7 +48,7 @@
 
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card  my-3">
-                <div class="card-header headerColor">
+                <div class="card-header bg-light">
                     <h5 class="card-title mb-0">Ticket #12345: Document Mistranslation</h5>
                 </div>
                 <div class="card-body">
@@ -84,7 +84,7 @@
 
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card  my-3">
-                <div class="card-header headerColor">
+                <div class="card-header bg-light">
                     <h5 class="card-title mb-0">Ticket #12345: Document Mistranslation</h5>
                 </div>
                 <div class="card-body">
@@ -120,7 +120,7 @@
 
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card  my-3">
-                <div class="card-header headerColor">
+                <div class="card-header bg-light">
                     <h5 class="card-title mb-0">Ticket #12345: Document Mistranslation</h5>
                 </div>
                 <div class="card-body">

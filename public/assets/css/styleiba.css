@@ -12,3 +12,12 @@
     background-color: #3C5B6F;
     color: white;
 }
+
+.alink:hover {
+    color: gray !important;
+    text-decoration: none !important;
+}
+
+.alink {
+    color: gray;
+}

@@ -45,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="manager_dashboard">
+                <a class="nav-link" href="employee_dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -59,15 +59,9 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="manager_assignment">
+                <a class="nav-link" href="employee_orderHistory">
                     <i class="fas fa-fw fa-bars"></i>
-                    <span>Task Assignment</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="manager_tickets">
-                    <i class="fas fa-fw fa-ticket-alt"></i>
-                    <span>Tickets</span></a>
+                    <span>Task History</span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
