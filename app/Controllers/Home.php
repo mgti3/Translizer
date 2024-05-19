@@ -13,4 +13,9 @@ class Home extends BaseController
     {
         return view("admin_team_management");
     }
+
+    public function adminEmployeesManagement(): string
+    {
+        return view("admin_employees_management");
+    }
 }

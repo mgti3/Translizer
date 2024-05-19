@@ -57,13 +57,23 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Charts -->
+            <!-- Nav Item - Employees -->
+            <li class="nav-item">
+                <a class="nav-link" href="admin_employees_management">
+                    <i class="fas fa-fw fa-user-tie"></i>
+                    <span>Employees Management</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Teams -->
             <li class="nav-item">
                 <a class="nav-link" href="admin_team_management">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Team Management</span>
                 </a>
             </li>
+
+
 
 
 
