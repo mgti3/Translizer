@@ -15,3 +15,6 @@ $routes->add('employee_orderDetails', 'Employee::orderDetails');
 $routes->add('admin_dashboard', 'Admin::dashboard');
 $routes->add('admin_team_management', 'Admin::adminTeamManagement');
 $routes->add('admin_employees_management', 'Admin::adminEmployeesManagement');
+$routes->add('user_dashboard', 'User::dashboard');
+$routes->add('orders_page', 'User::orders');
+$routes->add('reports_page', 'User::reports');

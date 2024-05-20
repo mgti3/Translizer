@@ -23,4 +23,14 @@ class Home extends BaseController
     {
         return view("User_dashboard");
     }
+
+    public function Orders(): string
+    {
+        return view("Orders_page");
+    }
+
+    public function Reports(): string
+    {
+        return view("Reports_page");
+    }
 }
