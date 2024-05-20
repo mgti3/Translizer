@@ -9,7 +9,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Personal Information</h6>
+        <h6 class="m-0 font-weight-bold"">Personal Information</h6>
     </div>
     <div class="card-body">
         <h3>Name: user name </h3>
@@ -32,34 +32,54 @@
 <div class="card shadow mb-4">
     <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
         aria-expanded="true" aria-controls="collapseCardExample">
-        <h6 class="m-0 font-weight-bold text-primary">Place an order</h6>
+        <h6 class="m-0 font-weight-bold">Place an order</h6>
     </a>
     <div class="collapse show" id="collapseCardExample">
         <div class="card-body">
-            <form action="/upload" method="post" enctype="multipart/form-data">
-                <label for="documentLanguage">Document Language:</label>
-                <select id="documentLanguage" name="documentLanguage" style="width: 80%;">
-                    <option value="English">English</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="French">French</option>
-                </select>
+            <div class="container text-left">
+                <form>
+                    
+                    <div class="mb-3">
+                        <label for="documentLanguage" class="text-align-left">Document Language:</label>
+                        <select id="documentLanguage" name="documentLanguage" class="form-control form-control-solid">
+                            <option value="English">Arabic</option>
+                            <option value="English">English</option>
+                            <option value="Spanish">Spanish</option>
+                            <option value="French">French</option>
+                        </select>
+                    </div>
 
-                <label for="targetLanguage">Target Language:</label>
-                <select id="targetLanguage" name="targetLanguage" style="width: 80%;">
-                    <option value="Spanish">Spanish</option>
-                    <option value="French">French</option>
-                    <option value="German">German</option>
-                </select>
+                    <label for="targetLanguage">Target Language:</label>
+                    <select id="targetLanguage" name="targetLanguage" class="form-control form-control-solid">
+                        <option value="Spanish">Spanish</option>
+                        <option value="English">English</option>
+                        <option value="English">Arabic</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                    </select>
 
-                <label for="file">Upload Document:</label>
-                <input type="file" id="file" name="file" accept=".docx,.pdf,.txt,.doc,.xls,.xlsx,.ppt,.pptx" style="width: 80%;">
+                    <label for="file">Upload Document:</label>
+                    <input type="file" class="form-control bg-light border-0 small" placeholder="Search for..."
+                        aria-label="Search" aria-describedby="basic-addon2">
 
-                <label for="urgency">Urgent Translation:</label>
-                <input type="checkbox" id="urgency" name="urgency">
+                    <div class="form-check form-switch" style="margin-top: 15px">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Urgent</label>
+                    </div>
+                    <a href="#" class="btn btn-primary btn-icon-split"
+                        style="margin-top: 15px; background-color: #153448 ">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Submit Order</span>
+                    </a>
+                </form>
 
-                <input type="submit" value="Submit Order">
-            </form>
+            </div>
+
+
         </div>
+        
     </div>
 </div>
 

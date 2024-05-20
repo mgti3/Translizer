@@ -50,6 +50,7 @@
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span>Home</span></a>
             </li>
+            
 
             <li class="nav-item">
                 <a class="nav-link" href="Orders">
@@ -66,7 +67,7 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-
+           
             <!-- Divider -->
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -287,7 +288,7 @@
                 <div class="container-fluid">
 
 
-                    <?= $this->renderSection('userContent') ?>
+                    <?= $this->renderSection('Orders') ?>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -357,12 +358,6 @@
 
     <!-- Page level custom scripts -->
     <script src="./assets/js/demo/datatables-demo.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap JavaScript (optional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

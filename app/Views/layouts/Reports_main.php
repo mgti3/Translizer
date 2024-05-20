@@ -50,6 +50,7 @@
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span>Home</span></a>
             </li>
+            
 
             <li class="nav-item">
                 <a class="nav-link" href="Orders">
@@ -66,7 +67,7 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-
+           
             <!-- Divider -->
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -287,7 +288,7 @@
                 <div class="container-fluid">
 
 
-                    <?= $this->renderSection('userContent') ?>
+                    <?= $this->renderSection('Reports') ?>
 
                 </div>
                 <!-- /.container-fluid -->
