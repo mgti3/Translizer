@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Controllers;
 
-class Home extends BaseController
+class Admin extends BaseController
 {
-    public function index(): string
+    public function dashboard(): string
     {
-        return view("home");
+        return view("admin_dashboard");
     }
 
     public function adminTeamManagement(): string
