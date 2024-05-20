@@ -33,4 +33,10 @@ class Home extends BaseController
     {
         return view("Reports_page");
     }
+
+    public function login(): string
+    {
+        return view("login");
+    }
+
 }

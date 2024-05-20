@@ -19,11 +19,11 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Earnings (Monthly)</div>
+                            Employees Count</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        <i class="fas fa-fw fa-users fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Earnings (Annual)</div>
+                            Earnings (Monthly)</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                     </div>
                     <div class="col-auto">
@@ -54,7 +54,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Completed Tasks
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
@@ -83,7 +83,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Pending Requests</div>
+                            In Progress Tasks</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                     </div>
                     <div class="col-auto">
@@ -197,7 +197,8 @@
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                                role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
                                     <tr role="row">
                                         <th>ID</th>
@@ -209,7 +210,6 @@
                                         <th>Manager</th>
                                         <th>Start date</th>
                                         <th>Salary</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -223,7 +223,6 @@
                                         <th>Manager</th>
                                         <th>Start date</th>
                                         <th>Salary</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -237,17 +236,7 @@
                                         <td>Admin</td>
                                         <td>1/1/2024</td>
                                         <td>$1,200,000</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item edit-btn" data-id="1" data-name="Adham Alterawi" data-email="adham.terawi2001@gmail.com" data-age="23" data-position="Admin" data-team="Admin" data-manager="Admin" data-start="1/1/2024" data-salary="$1,200,000">Edit</a>
-                                                    <a href="#" class="dropdown-item delete-btn" data-id="1">Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
+
                                     </tr>
                                     <tr>
                                         <td>2</td>
@@ -259,17 +248,7 @@
                                         <td>Ibrahim Ineizeh</td>
                                         <td>1/1/2024</td>
                                         <td>$700,000</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item edit-btn" data-id="2" data-name="Ibrahim Ineizeh" data-email="ibrahim0ineizeh@gmail.com" data-age="23" data-position="Manager" data-team="Mathematics" data-manager="Ibrahim Ineizeh" data-start="1/1/2024" data-salary="$700,000">Edit</a>
-                                                    <a href="#" class="dropdown-item delete-btn" data-id="2">Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
+
                                     </tr>
                                     <tr>
                                         <td>3</td>
@@ -281,42 +260,14 @@
                                         <td>Ibrahim Ineizeh</td>
                                         <td>1/1/2024</td>
                                         <td>$500,000</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item edit-btn" data-id="3" data-name="Mahmoud Aledwan" data-email="my8977907@gmail.com" data-age="23" data-position="Employee" data-team="Mathematics" data-manager="Ibrahim Ineizeh" data-start="1/1/2024" data-salary="$500,000">Edit</a>
-                                                    <a href="#" class="dropdown-item delete-btn" data-id="3">Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
+
                                     </tr>
                                     <!-- Add more rows as needed -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-5">
-                            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                        </div>
-                        <div class="col-sm-12 col-md-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                    <li class="paginate_button page-item"><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                    <li class="paginate_button page-item"><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-                                    <li class="paginate_button page-item"><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-                                    <li class="paginate_button page-item"><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-                                    <li class="paginate_button page-item"><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
-                                    <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -106,7 +106,7 @@
     <div class="row justify-content-start">
 
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card my-3">
+            <div class="card shadow mb-4">
                 <div class="card-header bg-light">
                     <h5 class="card-title mb-0">Order #12345</h5>
                 </div>
@@ -127,7 +127,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card my-3">
+            <div class="card shadow mb-4">
                 <div class="card-header bg-light">
                     <h5 class="card-title mb-0">Order #12345</h5>
                 </div>
@@ -148,7 +148,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card my-3">
+            <div class="card shadow mb-4">
                 <div class="card-header bg-light">
                     <h5 class="card-title mb-0">Order #12345</h5>
                 </div>
@@ -169,7 +169,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card my-3">
+            <div class="card shadow mb-4">
                 <div class="card-header bg-light">
                     <h5 class="card-title mb-0">Order #12345</h5>
                 </div>
@@ -190,7 +190,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card my-3">
+            <div class="card shadow mb-4">
                 <div class="card-header bg-light">
                     <h5 class="card-title mb-0">Order #12345</h5>
                 </div>
