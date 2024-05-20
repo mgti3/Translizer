@@ -18,4 +18,9 @@ class Home extends BaseController
     {
         return view("admin_employees_management");
     }
+
+    public function User(): string
+    {
+        return view("User_dashboard");
+    }
 }
