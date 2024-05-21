@@ -32,7 +32,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="manager_dashboard">
                 <div>
                     <img src="./assets/img/logo.png"
                         style="height: auto; width: 70px; margin-top:10px; margin-bottom:10px;" alt="">

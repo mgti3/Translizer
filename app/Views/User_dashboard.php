@@ -61,9 +61,10 @@
                     <input type="file" class="form-control bg-light border-0 small" placeholder="Search for..."
                         aria-label="Search" aria-describedby="basic-addon2">
 
-                    <div class="form-check form-switch" style="margin-top: 15px">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                        <label class="form-check-label ml-0" for="flexSwitchCheckDefault">Urgent</label>
+                    <div class="custom-control custom-checkbox small my-3">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Urgent
+                        </label>
                     </div>
                     <!-- <a href="#" class="btn btn-primary btn-icon-split"
                         style="margin-top: 15px; background-color: #153448 ">
