@@ -18,4 +18,13 @@ class Manager extends BaseController
     {
         return view("manager_assignment");
     }
+
+    public function clicked()
+    {
+        $data = array(
+            'list' => 10
+        );
+        echo json_encode($data);
+    }
+
 }
