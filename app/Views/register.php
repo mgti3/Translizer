@@ -26,7 +26,8 @@
 
     <div class="text-center">
         <h1 class="mt-3 text-white font-weight-bold">Translizer</h1>
-        <img src="./assets/img/logo.png" alt="logo" style="width: 800px; height: auto; position: absolute;  transform: translate(-900px, -80px); opacity: 0.5;">
+        <img src="./assets/img/logo.png" alt="logo"
+            style="width: 800px; height: auto; position: absolute;  transform: translate(-900px, -80px); opacity: 0.5;">
     </div>
 
     <div class="container" style=" position: relative; margin-top: 60px;">
@@ -48,20 +49,31 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Sign Up!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="POST" action="home/RegisterOperation">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                            <input type="email" name="email" class="form-control form-control-user"
+                                                id="email" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                            <input type="text" class="form-control form-control-user" id="username"
+                                                name="username" aria-describedby="emailHelp"
                                                 placeholder="Enter Username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" name="password"
+                                                class="form-control form-control-user" id="password"
+                                                placeholder="Password">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="Role" class="form-control form-control-user"
+                                                id="Role" placeholder="user">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="number" name="Team_id" class="form-control form-control-user"
+                                                id="Team_id" placeholder="Team_id">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
@@ -74,9 +86,9 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="manager_dashboard" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Sign Up
-                                        </a>
+                                        </button>
                                     </form>
                                     <div class="text-center">
                                         <a class="small" href="login">Already have an account?</a>
