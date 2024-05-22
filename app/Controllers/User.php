@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\usersModel;
 
 class User extends BaseController
 {
@@ -19,4 +20,20 @@ class User extends BaseController
     {
         return view("reports_page");
     }
+    public function signup()
+    {
+        $data = [
+            'username' => 'user',
+            'password' => 'pass',
+            'email' => 'emailuser',
+            'Role' => 3,
+            'Team_id' => 'none',
+        ];
+        if($this->request->getMethod() == 'POST'){
+            $model = new usersModel();
+            $model->save($_POST);
+        }
+        return view('register',$data);
+    }
+
 }

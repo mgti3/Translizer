@@ -22,5 +22,6 @@ $routes->add('login', 'Home::login');
 $routes->add('register', 'Home::register');
 $routes->add('landing', 'Home::landing');
 $routes->add('login', 'Home::login');
+$routes->post('Home/signup', 'User::signup');
 
 
