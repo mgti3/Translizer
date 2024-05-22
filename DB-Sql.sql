@@ -1,5 +1,5 @@
 CREATE TABLE `Users` (
-  `User_id` integer PRIMARY KEY NOT NULL,
+  `User_id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `username` varchar(255),
   `password` varchar(255),
   `email` varchar(255),
@@ -8,13 +8,13 @@ CREATE TABLE `Users` (
 );
 
 CREATE TABLE `Teams` (
-  `Tid` integer PRIMARY KEY NOT NULL,
+  `Tid` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `Team_name` varchar(255),
   `manager_id` integer
 );
 
 CREATE TABLE `Documents` (
-  `Document_id` integer PRIMARY KEY NOT NULL,
+  `Document_id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `Team_id` integer,
   `User_id` integer,
   `language` varchar(255),
@@ -30,7 +30,7 @@ CREATE TABLE `Documents` (
 );
 
 CREATE TABLE `Reports` (
-  `Report_id` integer PRIMARY KEY NOT NULL,
+  `Report_id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `user_id` integer,
   `status` varchar(255),
   `Translation_id` integer,
