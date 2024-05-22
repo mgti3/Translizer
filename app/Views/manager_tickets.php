@@ -11,19 +11,14 @@
     <div class="row justify-content-start">
 
         <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card  my-3">
+            <div class="card shadow mb-4">
+
                 <div class="card-header bg-light">
-                    <h5 class="card-title mb-0">Ticket #12345: Document Mistranslation</h5>
+                    <h5 class="card-title mb-0">Ticket #12345</h5>
                 </div>
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted">Submitted by: Jane Doe</h6>
-                    <p class="card-text">
-                        <strong>Issue Description:</strong><br>
-                        There is a mistranslation in the user manual for the product ABC. The sentence on page 23, "The
-                        device should be kept in a cool place," is translated as "El dispositivo debe mantenerse en un
-                        lugar fresco," which is incorrect. The correct translation should be "El dispositivo debe
-                        guardarse en un lugar fresco."
-                    </p>
+                    
                     <p class="card-text">
                         <strong>Document Affected:</strong><br>
                         Product ABC User Manual (Spanish Version)
@@ -47,19 +42,14 @@
 
 
         <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card  my-3">
+            <div class="card shadow mb-4">
+
                 <div class="card-header bg-light">
-                    <h5 class="card-title mb-0">Ticket #12345: Document Mistranslation</h5>
+                    <h5 class="card-title mb-0">Ticket #12345</h5>
                 </div>
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted">Submitted by: Jane Doe</h6>
-                    <p class="card-text">
-                        <strong>Issue Description:</strong><br>
-                        There is a mistranslation in the user manual for the product ABC. The sentence on page 23, "The
-                        device should be kept in a cool place," is translated as "El dispositivo debe mantenerse en un
-                        lugar fresco," which is incorrect. The correct translation should be "El dispositivo debe
-                        guardarse en un lugar fresco."
-                    </p>
+                    
                     <p class="card-text">
                         <strong>Document Affected:</strong><br>
                         Product ABC User Manual (Spanish Version)
@@ -83,19 +73,14 @@
 
 
         <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card  my-3">
+            <div class="card shadow mb-4">
+
                 <div class="card-header bg-light">
-                    <h5 class="card-title mb-0">Ticket #12345: Document Mistranslation</h5>
+                    <h5 class="card-title mb-0">Ticket #12345</h5>
                 </div>
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted">Submitted by: Jane Doe</h6>
-                    <p class="card-text">
-                        <strong>Issue Description:</strong><br>
-                        There is a mistranslation in the user manual for the product ABC. The sentence on page 23, "The
-                        device should be kept in a cool place," is translated as "El dispositivo debe mantenerse en un
-                        lugar fresco," which is incorrect. The correct translation should be "El dispositivo debe
-                        guardarse en un lugar fresco."
-                    </p>
+                    
                     <p class="card-text">
                         <strong>Document Affected:</strong><br>
                         Product ABC User Manual (Spanish Version)
@@ -119,19 +104,14 @@
 
 
         <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="card  my-3">
+            <div class="card shadow mb-4">
+
                 <div class="card-header bg-light">
-                    <h5 class="card-title mb-0">Ticket #12345: Document Mistranslation</h5>
+                    <h5 class="card-title mb-0">Ticket #12345</h5>
                 </div>
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted">Submitted by: Jane Doe</h6>
-                    <p class="card-text">
-                        <strong>Issue Description:</strong><br>
-                        There is a mistranslation in the user manual for the product ABC. The sentence on page 23, "The
-                        device should be kept in a cool place," is translated as "El dispositivo debe mantenerse en un
-                        lugar fresco," which is incorrect. The correct translation should be "El dispositivo debe
-                        guardarse en un lugar fresco."
-                    </p>
+                    
                     <p class="card-text">
                         <strong>Document Affected:</strong><br>
                         Product ABC User Manual (Spanish Version)

@@ -147,7 +147,7 @@
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
+                                <i class="fas fa-bell fa-fw text-primary"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
@@ -198,7 +198,7 @@
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
+                                <i class="fas fa-envelope fa-fw text-primary"></i>
                                 <!-- Counter - Messages -->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
@@ -361,6 +361,13 @@
     <script src="./assets/js/demo/chart-pie-demo.js"></script>
     <script src="./assets/js/demo/chart-bar-demo.js"></script>
     <script src="./assets/js/demo/chart-area-demo.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="./assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="./assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="./assets/js/demo/datatables-demo.js"></script>
 
 </body>
 

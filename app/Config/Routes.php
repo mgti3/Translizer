@@ -18,5 +18,9 @@ $routes->add('admin_employees_management', 'Admin::adminEmployeesManagement');
 $routes->add('user_dashboard', 'User::dashboard');
 $routes->add('orders_page', 'User::orders');
 $routes->add('reports_page', 'User::reports');
+$routes->add('login', 'Home::login');
+$routes->add('register', 'Home::register');
+$routes->add('landing', 'Home::landing');
+$routes->add('login', 'Home::login');
 
-$routes->add('clicked', "Manager::clicked");
+

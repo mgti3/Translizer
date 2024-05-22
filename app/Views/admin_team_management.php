@@ -10,9 +10,11 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0 text-gray-800">Teams</h1>
-        <button class="btn btn-success" data-toggle="modal" data-target="#addTeamModal">
+        <!-- <button class="btn btn-success" data-toggle="modal" data-target="#addTeamModal">
             <i class="fas fa-plus"></i> Add New Team
-        </button>
+        </button> -->
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#addTeamModal"><i
+            class="fas fa-plus fa-sm text-white-50"></i> Add New Team</a>
     </div>
 
     <div class="row">
