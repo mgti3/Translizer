@@ -1,6 +1,8 @@
 <?php
 
+
 namespace App\Controllers;
+use App\Models\Login_model;
 
 class Home extends BaseController
 {
@@ -47,6 +49,35 @@ class Home extends BaseController
     public function landing(): string
     {
         return view("landing");
+    }
+
+
+    protected $loginModel;
+
+    public function __construct()
+    {
+        $this->loginModel = new Login_model();
+    }
+
+    public function Ulogin()
+    {
+        // Load the helper for form and URL
+        helper(['form', 'url']);
+
+        // Get email and password from form submission
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        // Call the check_login function of the model
+        $user_data = $this->loginModel->check_login($email, $password);
+
+        if ($user_data) {
+            // Login successful, redirect to dashboard or another page
+            return redirect()->to('http://localhost/Translizer/public/user_dashboard');
+        } else {
+            // Login failed, show error message or redirect to login page
+            return redirect()->to('http://localhost/Translizer/public/login')->with('error', 'Invalid login credentials');
+        }
     }
 
 }
