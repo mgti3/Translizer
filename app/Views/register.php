@@ -48,20 +48,20 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Sign Up!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="Home/newRegister" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address..." name="email">
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Username">
+                                                placeholder="Enter Username" name="username">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
@@ -74,9 +74,9 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="manager_dashboard" class="btn btn-primary btn-user btn-block">
+                                        <button  class="btn btn-primary btn-user btn-block">
                                             Sign Up
-                                        </a>
+                                        </button>
                                     </form>
                                     <div class="text-center">
                                         <a class="small" href="login">Already have an account?</a>

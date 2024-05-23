@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class Login_model extends Model
 {
     protected $table = 'users';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'User_id';
     protected $allowedFields = ['email', 'password'];
 
     public function check_login($email, $password)

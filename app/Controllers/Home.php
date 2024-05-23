@@ -3,6 +3,8 @@
 
 namespace App\Controllers;
 use App\Models\Login_model;
+use App\Models\Signup_model;
+
 
 class Home extends BaseController
 {
@@ -57,6 +59,7 @@ class Home extends BaseController
     public function __construct()
     {
         $this->loginModel = new Login_model();
+        $this->signupModel = new Signup_model();
     }
 
     public function Ulogin()
@@ -79,5 +82,30 @@ class Home extends BaseController
             return redirect()->to('http://localhost/Translizer/public/login')->with('error', 'Invalid login credentials');
         }
     }
+
+    public function newRegister()
+{
+    // Load helper functions for form and URL handling
+    helper(['form', 'url']);
+
+    // Get form data
+    $email = $this->request->getPost('email');
+    $password = $this->request->getPost('password');
+    $username = $this->request->getPost('username');
+
+    // Prepare data for insertion
+    $data = [
+        'username' => $username,
+        'email'    => $email,
+        'password' => $password,
+    ];
+
+    // Insert data into the signup model
+    $this->signupModel->insert($data);
+
+    // Redirect to a success page or login page
+    return redirect()->to('http://localhost/Translizer/public/login')->with('success', 'Registration successful. Please log in.');
+}
+
 
 }
