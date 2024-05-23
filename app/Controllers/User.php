@@ -19,4 +19,8 @@ class User extends BaseController
     {
         return view("reports_page");
     }
+
+    public function user_viewTranslation(): string {
+        return view("user_viewTranslation");
+    }
 }

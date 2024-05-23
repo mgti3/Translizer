@@ -18,4 +18,19 @@ class Employee extends BaseController
     {
         return view("employee_orderDetails");
     }
+
+    public function viewDoc(): string
+    {
+        return view("employee_viewDoc");
+    }
+
+    public function employee_translationUpload(): string
+    {
+        return view("employee_translationUpload");
+    }
+
+    public function employee_viewTranslation(): string 
+    {
+        return view("employee_viewTranslation");
+    }
 }

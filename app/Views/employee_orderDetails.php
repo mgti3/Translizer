@@ -18,6 +18,7 @@
                     <h4>Download Document</h4>
                     <p>Click the button below to download the document.</p>
                     <a href="path-to-your-document.pdf" class="btn btn-primary" download>Download Document</a>
+                    <a href="employee_viewDoc" class="btn btn-primary">View Document</a>
                 </div>
 
                 <!-- Document Details Section -->

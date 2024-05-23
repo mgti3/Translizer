@@ -34,28 +34,28 @@
                             <td>2024/05/01</td>
                             <td>$450.75</td>
                             <td>Done</td>
-                            <td><a href="">Translation-1</a></td>
+                            <td><a href="user_viewTranslation">Translation-1</a></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>2024/05/02</td>
                             <td>$320.40</td>
                             <td>In Process</td>
-                            <td><a href="">Translation-2</a></td>
+                            <td><a href="user_viewTranslation">Translation-2</a></td>
                         </tr>
                         <tr>
                             <td>99</td>
                             <td>2024/05/30</td>
                             <td>$890.60</td>
                             <td>Done</td>
-                            <td><a href="">Translation-99</a></td>
+                            <td><a href="user_viewTranslation">Translation-99</a></td>
                         </tr>
                         <tr>
                             <td>100</td>
                             <td>2024/05/31</td>
                             <td>$550.20</td>
                             <td>In Process</td>
-                            <td><a href="">Translation-100</a></td>
+                            <td><a href="user_viewTranslation">Translation-100</a></td>
                         </tr>
                     </tbody>
                 </table>
