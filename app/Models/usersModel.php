@@ -8,9 +8,9 @@ class usersModel extends Model
     protected $primaryKey = 'User_id';
     protected $allowedFields = ['username', 'password', 'email', 'Role', 'Team_id'];
 
-    public function getManagers() {
+    public function getManagers(){
         return $this->db->table('users')
-                        ->where('Role', 1) // استعلام لاسترجاع المستخدمين الذين لديهم قيمة 1 في عمود Role
+                        ->where('Role', 1)
                         ->get()
                         ->getResultArray();
     }
