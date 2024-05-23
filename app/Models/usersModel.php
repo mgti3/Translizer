@@ -7,6 +7,14 @@ class usersModel extends Model
     protected $table = 'users';
     protected $primaryKey = 'User_id';
     protected $allowedFields = ['username', 'password', 'email', 'Role', 'Team_id'];
+
+    public function getManagers() {
+        return $this->db->table('users')
+                        ->where('Role', 1) // استعلام لاسترجاع المستخدمين الذين لديهم قيمة 1 في عمود Role
+                        ->get()
+                        ->getResultArray();
+    }
+
 }
 
 ?>

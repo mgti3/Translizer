@@ -26,7 +26,7 @@ class User extends BaseController
             'username' => 'user',
             'password' => 'pass',
             'email' => 'emailuser',
-            'Role' => 3,
+            'Role' => '3',
             'Team_id' => 'none',
         ];
         if($this->request->getMethod() == 'POST'){
