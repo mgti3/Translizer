@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\addEmployeeModel;
+use App\Models\usersModel;
 
 
 class Admin extends BaseController
@@ -38,11 +39,20 @@ class Admin extends BaseController
 
     public function addTeam()
     {
+        // $userModel = new usersModel();
+        // $managers = $userModel->getManagers();
+
+        // return view('admin_team_management',$managers);
+
         $userModel = new usersModel();
-        $managers = $userModel->getManagers();
 
-        return view('admin_team_management', ['managers' => $managers]);
-
+       $data['usersWithRoleOne'] = $userModel->where('Role', 1)->findAll();
+ 
+        return view('admin_team_management',$data);
+      
+        // foreach ($usersWithRoleOne as $user) {
+        //     echo $user['username'] . "<br>";
+        // }
 
     }
 }
