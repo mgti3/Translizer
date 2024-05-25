@@ -24,5 +24,6 @@ $routes->add('landing', 'Home::landing');
 $routes->add('login', 'Home::login');
 $routes->post('Home/signup', 'User::signup');
 $routes->post('admin_employees_management', 'Admin::addEmployee');
+$routes->add('adham', 'Admin::addTeam');
 
 
