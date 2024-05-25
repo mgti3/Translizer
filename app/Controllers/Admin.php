@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\addEmployeeModel;
+use App\Models\usersModel;
 
 
 class Admin extends BaseController
@@ -41,8 +42,12 @@ class Admin extends BaseController
         $userModel = new usersModel();
         $managers = $userModel->getManagers();
 
+        // طباعة البيانات للتأكد من صحتها
+        echo "<pre>";
+        print_r($managers);
+        echo "</pre>";
+
+        // يمكن أيضا تمرير البيانات إلى الفيو إذا لزم الأمر
         return view('admin_team_management', ['managers' => $managers]);
-
-
     }
 }

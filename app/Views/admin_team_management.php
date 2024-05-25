@@ -202,9 +202,7 @@
                     <div class="form-group">
                         <label for="managerName">Manager Name</label>
                         <select class="form-control" id="managerName">
-                            <?php foreach ($managers as $manager): ?>
-                                <option value="<?= $manager['User_id'] ?>"><?= $manager['username'] ?></option>
-                            <?php endforeach; ?>
+                            
                         </select>
                     </div>
                 </form>

@@ -8,11 +8,9 @@ class usersModel extends Model
     protected $primaryKey = 'User_id';
     protected $allowedFields = ['username', 'password', 'email', 'Role', 'Team_id'];
 
-    public function getManagers(){
-        return $this->db->table('users')
-                        ->where('Role', 1)
-                        ->get()
-                        ->getResultArray();
+    public function getManagers()
+    {
+        return $this->where('Role', 1)->findAll();
     }
 
 }
