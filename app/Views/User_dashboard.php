@@ -36,7 +36,7 @@
     <div class="collapse show" id="collapseCardExample">
         <div class="card-body">
             <div class="container text-left">
-                <form>
+                <form class="user" action="User/submitOrder" method="post" enctype="multipart/form-data">
 
                     <div class="mb-3">
                         <label for="documentLanguage" class="ml-0">Document Language:</label>
@@ -59,10 +59,10 @@
 
                     <label for="file" class="ml-0">Upload Document:</label>
                     <input type="file" class="form-control bg-light border-0 small" placeholder="Search for..."
-                        aria-label="Search" aria-describedby="basic-addon2">
+                        aria-label="Search" aria-describedby="basic-addon2" name="thefile">
 
                     <div class="custom-control custom-checkbox small my-3">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <input type="checkbox" class="custom-control-input" id="customCheck" name="urgent">
                         <label class="custom-control-label" for="customCheck">Urgent
                         </label>
                     </div>
@@ -73,8 +73,8 @@
                         </span>
                         <span class="text">Submit Order</span>
                     </a> -->
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-check"></i> Submit Order </a>
+                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-check"></i> Submit Order </button>
                 </form>
 
             </div>

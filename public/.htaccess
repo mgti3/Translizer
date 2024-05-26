@@ -43,6 +43,7 @@ Options -Indexes
 	# can be sent to index.php, and everything works as normal.
 	ErrorDocument 404 index.php
 </IfModule>
+php_value memory_limit 1024M
 
 # Disable server signature start
 ServerSignature Off
