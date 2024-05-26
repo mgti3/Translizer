@@ -72,15 +72,23 @@ class Home extends BaseController
         $password = $this->request->getPost('password');
 
         // Call the check_login function of the model
-        $user_data = $this->loginModel->check_login($email, $password);
+        $user = $this->loginModel->check_login($email, $password);
 
-        if ($user_data) {
-            // Login successful, redirect to dashboard or another page
+        if ($user) {
+            $session = \Config\Services::session();
+            $sessionData = [
+                'user_id' => $user['id'],
+                'username' => $user['username'],
+                // 'user_type' => $user['user_type'], // e.g., 'normal', 'manager'
+                'logged_in' => true
+            ];
+            $session->set($sessionData);
+
             return redirect()->to('http://localhost/Translizer/public/user_dashboard');
         } else {
-            // Login failed, show error message or redirect to login page
-            return redirect()->to('http://localhost/Translizer/public/login')->with('error', 'Invalid login credentials');
+            return redirect()->to('http://localhost/Translizer/public/login')->with('error', 'Invalid login');
         }
+
     }
 
     public function newRegister()
