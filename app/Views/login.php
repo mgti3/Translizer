@@ -48,15 +48,15 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Log IN!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="Home/Ulogin" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address..." name="email">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -65,9 +65,10 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="admin_dashboard" class="btn btn-primary btn-user btn-block">
+                                        <!-- <a href="" class="btn btn-primary btn-user btn-block" type="submit">
                                             Login
-                                        </a>
+                                        </a> -->
+                                        <button class="btn btn-primary btn-user btn-block" type="submit">Log In</button>
                                     </form>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>

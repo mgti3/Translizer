@@ -118,7 +118,7 @@
                         3567 Words
                     </p>
                     <a href="employee_orderDetails" class="btn view my-1">View Order Details</a>
-                    <a href="#" class="btn mark my-1">Upload Translation</a>
+                    <a href="employee_translationUpload" class="btn mark my-1">Upload Translation</a>
                 </div>
                 <div class="card-footer text-muted">
                     Order Status: Delivered
