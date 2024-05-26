@@ -18,16 +18,18 @@
     </div>
 
     <div class="row">
+        <?php foreach ($teams as $team): ?>
         <div class="col-md-6">
             <div class="card shadow mb-4">
                 <!-- Card Header - Accordion -->
-                <a href="#collapseCardExample1" class="d-block card-header py-3 collapsed border-left-primary"
-                    data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCardExample1">
-                    <h6 class="m-0 font-weight-bold text-primary">Mathematics Team</h6>
+                <a href="#collapseCardExample<?= $team['Tid'] ?>"
+                    class="d-block card-header py-3 collapsed border-left-primary" data-toggle="collapse" role="button"
+                    aria-expanded="false" aria-controls="collapseCardExample<?= $team['Tid'] ?>">
+                    <h6 class="m-0 font-weight-bold text-primary"><?= $team['Team_name'] ?></h6>
                     <div class="small text-secondary">Manager: John Doe</div>
                 </a>
                 <!-- Card Content - Collapse -->
-                <div class="collapse" id="collapseCardExample1">
+                <div class="collapse" id="collapseCardExample<?= $team['Tid'] ?>">
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
@@ -58,129 +60,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Accordion -->
-                <a href="#collapseCardExample2" class="d-block card-header py-3 collapsed border-left-success"
-                    data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCardExample2">
-                    <h6 class="m-0 font-weight-bold text-success">Science Team</h6>
-                    <div class="small text-secondary">Manager: Jane Smith</div>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse" id="collapseCardExample2">
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Incomplete Tasks</th>
-                                    <th>Completed Tasks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mahmoud Aledwan</td>
-                                    <td>6</td>
-                                    <td>15</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Ahmad Ali</td>
-                                    <td>0</td>
-                                    <td>5</td>
-                                </tr>
-                                <!-- Add more rows as needed -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Accordion -->
-                <a href="#collapseCardExample3" class="d-block card-header py-3 collapsed border-left-warning"
-                    data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCardExample3">
-                    <h6 class="m-0 font-weight-bold text-warning">Engineering Team</h6>
-                    <div class="small text-secondary">Manager: Alice Johnson</div>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse" id="collapseCardExample3">
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Incomplete Tasks</th>
-                                    <th>Completed Tasks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Sara Khan</td>
-                                    <td>3</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Ali Akbar</td>
-                                    <td>1</td>
-                                    <td>9</td>
-                                </tr>
-                                <!-- Add more rows as needed -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Accordion -->
-                <a href="#collapseCardExample4" class="d-block card-header py-3 collapsed border-left-danger"
-                    data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCardExample4">
-                    <h6 class="m-0 font-weight-bold text-danger">Marketing Team</h6>
-                    <div class="small text-secondary">Manager: Michael Brown</div>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse" id="collapseCardExample4">
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Incomplete Tasks</th>
-                                    <th>Completed Tasks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Lisa Ray</td>
-                                    <td>2</td>
-                                    <td>14</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>John Doe</td>
-                                    <td>3</td>
-                                    <td>8</td>
-                                </tr>
-                                <!-- Add more rows as needed -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 <!-- Add Team Modal -->
@@ -195,32 +77,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="Admin/addTeam" method="post">
                     <div class="form-group">
                         <label for="teamName">Team Name</label>
-                        <input type="text" class="form-control" id="teamName" placeholder="Enter team name">
+                        <input type="text" name="teamName" class="form-control" id="teamName"
+                            placeholder="Enter team name">
                     </div>
                     <div class="form-group">
                         <label for="managerName">Manager Name</label>
                         <select class="form-control" id="managerName">
-<<<<<<< HEAD
-                            
-=======
+                            <option value="" disabled selected>Select Manager</option>
                             <?php foreach ($usersWithRoleOne as $user): ?>
                             <option value="<?= $user['User_id'] ?>"><?= $user['username'] ?></option>
                             <?php endforeach; ?>
->>>>>>> 8ed953a51f87b444dd1ceea500707dcac6f830df
                         </select>
                     </div>
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="saveTeam btn-primary">Save Team</button>
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save Team</button>
-            </div>
+
         </div>
     </div>
 </div>
+
 
 <?= $this->endSection() ?>

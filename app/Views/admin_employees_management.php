@@ -16,10 +16,10 @@
                     <label for="name">Name</label>
                     <input type="text" name="username" class="form-control" id="name" placeholder="Enter name" required>
                 </div>
-
+                
                 <div class="form-group col-md-6">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" class="form-control" id="dob" required>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
                 </div>
             </div>
 
@@ -28,10 +28,9 @@
                     <label for="department">Department</label>
                     <select name="dep" class="form-control" id="department" required>
                         <option value="" disabled selected>Select department</option>
-                        <option value="MT">Mathematical Translations</option>
-                        <option value="LT">Literature Translation</option>
-                        <option value="ST">Scientific Translation</option>
-                        <option value="PT">Political Translation</option>
+                        <?php foreach ($departments as $dep): ?>
+                            <option value="<?= $dep['Tid'] ?>"><?= $dep['Team_name'] ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
@@ -48,12 +47,14 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
-                </div>
-                <div class="form-group col-md-6">
                     <label for="password">Password</label>
                     <input type="password" name="password" class="form-control" id="password"
+                        placeholder="Enter password" required>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="conPassword">Confirm Password</label>
+                    <input type="password" name="conPassword" class="form-control" id="conPassword"
                         placeholder="Enter password" required>
                 </div>
             </div>
@@ -62,7 +63,6 @@
     </div>
 
     <!-- Data Table -->
-    <!-- DataTales Example -->
     <h2>Information Employees</h2>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -83,7 +83,6 @@
                                         <th>Position</th>
                                         <th>Team</th>
                                         <th>Manager</th>
-                                        <th>Start date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -95,7 +94,6 @@
                                         <th>Position</th>
                                         <th>Team</th>
                                         <th>Manager</th>
-                                        <th>Start date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </tfoot>
@@ -107,7 +105,6 @@
                                         <td>Admin</td>
                                         <td>Admin</td>
                                         <td>Admin</td>
-                                        <td>1/1/2024</td>
                                         <td>
                                             <div class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -117,7 +114,7 @@
                                                     <a href="#" class="dropdown-item edit-btn" data-id="1"
                                                         data-name="Adham Alterawi"
                                                         data-email="adham.terawi2001@gmail.com" data-position="Admin"
-                                                        data-team="Admin" data-manager="Admin" data-start="1/1/2024">
+                                                        data-team="Admin" data-manager="Admin">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </a>
                                                     <a href="#" class="dropdown-item delete-btn" data-id="1">
@@ -134,7 +131,6 @@
                                         <td>Manager</td>
                                         <td>Mathematics</td>
                                         <td>Ibrahim Ineizeh</td>
-                                        <td>1/1/2024</td>
                                         <td>
                                             <div class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -144,8 +140,7 @@
                                                     <a href="#" class="dropdown-item edit-btn" data-id="2"
                                                         data-name="Ibrahim Ineizeh"
                                                         data-email="ibrahim0ineizeh@gmail.com" data-position="Manager"
-                                                        data-team="Mathematics" data-manager="Ibrahim Ineizeh"
-                                                        data-start="1/1/2024">
+                                                        data-team="Mathematics" data-manager="Ibrahim Ineizeh">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </a>
                                                     <a href="#" class="dropdown-item delete-btn" data-id="2">
@@ -162,7 +157,6 @@
                                         <td>Employee</td>
                                         <td>Mathematics</td>
                                         <td>Ibrahim Ineizeh</td>
-                                        <td>1/1/2024</td>
                                         <td>
                                             <div class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -172,7 +166,7 @@
                                                     <a href="#" class="dropdown-item edit-btn" data-id="3"
                                                         data-name="Mahmoud Aledwan" data-email="my8977907@gmail.com"
                                                         data-position="Employee" data-team="Mathematics"
-                                                        data-manager="Ibrahim Ineizeh" data-start="1/1/2024">
+                                                        data-manager="Ibrahim Ineizeh">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </a>
                                                     <a href="#" class="dropdown-item delete-btn" data-id="3">
