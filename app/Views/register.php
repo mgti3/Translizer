@@ -28,6 +28,8 @@
         <h1 class="mt-3 text-white font-weight-bold">Translizer</h1>
         <img src="./assets/img/logo.png" alt="logo"
             style="width: 800px; height: auto; position: absolute;  transform: translate(-900px, -80px); opacity: 0.5;">
+        <img src="./assets/img/logo.png" alt="logo"
+            style="width: 800px; height: auto; position: absolute;  transform: translate(-900px, -80px); opacity: 0.5;">
     </div>
 
     <div class="container" style=" position: relative; margin-top: 60px;">
@@ -51,7 +53,7 @@
                                     </div>
                                     <form class="user" action="Home/newRegister" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address..." name="email">
                                         </div>

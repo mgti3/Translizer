@@ -13,8 +13,8 @@
         <!-- <button class="btn btn-success" data-toggle="modal" data-target="#addTeamModal">
             <i class="fas fa-plus"></i> Add New Team
         </button> -->
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#addTeamModal"><i
-            class="fas fa-plus fa-sm text-white-50"></i> Add New Team</a>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
+            data-target="#addTeamModal"><i class="fas fa-plus fa-sm text-white-50"></i> Add New Team</a>
     </div>
 
     <div class="row">
@@ -184,7 +184,8 @@
 </div>
 
 <!-- Add Team Modal -->
-<div class="modal fade" id="addTeamModal" tabindex="-1" role="dialog" aria-labelledby="addTeamModalLabel" aria-hidden="true">
+<div class="modal fade" id="addTeamModal" tabindex="-1" role="dialog" aria-labelledby="addTeamModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -201,8 +202,17 @@
                     </div>
                     <div class="form-group">
                         <label for="managerName">Manager Name</label>
-                        <input type="text" class="form-control" id="managerName" placeholder="Enter manager name">
+                        <select class="form-control" id="managerName">
+<<<<<<< HEAD
+                            
+=======
+                            <?php foreach ($usersWithRoleOne as $user): ?>
+                            <option value="<?= $user['User_id'] ?>"><?= $user['username'] ?></option>
+                            <?php endforeach; ?>
+>>>>>>> 8ed953a51f87b444dd1ceea500707dcac6f830df
+                        </select>
                     </div>
+
                 </form>
             </div>
             <div class="modal-footer">
