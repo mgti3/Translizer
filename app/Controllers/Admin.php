@@ -39,20 +39,8 @@ class Admin extends BaseController
 
     public function addTeam()
     {
-        // $userModel = new usersModel();
-        // $managers = $userModel->getManagers();
-
-        // return view('admin_team_management',$managers);
-
-        $userModel = new usersModel();
-
+       $userModel = new usersModel();
        $data['usersWithRoleOne'] = $userModel->where('Role', 1)->findAll();
- 
-        return view('admin_team_management',$data);
-      
-        // foreach ($usersWithRoleOne as $user) {
-        //     echo $user['username'] . "<br>";
-        // }
-
+       return view('admin_team_management',$data);
     }
 }
