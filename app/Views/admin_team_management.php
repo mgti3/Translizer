@@ -203,9 +203,13 @@
                     <div class="form-group">
                         <label for="managerName">Manager Name</label>
                         <select class="form-control" id="managerName">
+<<<<<<< HEAD
+                            
+=======
                             <?php foreach ($usersWithRoleOne as $user): ?>
                             <option value="<?= $user['User_id'] ?>"><?= $user['username'] ?></option>
                             <?php endforeach; ?>
+>>>>>>> 8ed953a51f87b444dd1ceea500707dcac6f830df
                         </select>
                     </div>
 
