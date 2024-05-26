@@ -68,7 +68,7 @@
                                         <!-- <a href="" class="btn btn-primary btn-user btn-block" type="submit">
                                             Login
                                         </a> -->
-                                        <button type="submit">submit</button>
+                                        <button class="btn btn-primary btn-user btn-block" type="submit">Log In</button>
                                     </form>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>

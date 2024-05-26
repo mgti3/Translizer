@@ -49,31 +49,20 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Sign Up!</h1>
                                     </div>
-                                    <form class="user" method="POST" action="home/RegisterOperation">
+                                    <form class="user" action="Home/newRegister" method="post">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user"
-                                                id="email" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address..." name="email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="username"
-                                                name="username" aria-describedby="emailHelp"
-                                                placeholder="Enter Username">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Username" name="username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password"
-                                                class="form-control form-control-user" id="password"
-                                                placeholder="Password">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input type="text" name="Role" class="form-control form-control-user"
-                                                id="Role" placeholder="user">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input type="number" name="Team_id" class="form-control form-control-user"
-                                                id="Team_id" placeholder="Team_id">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
@@ -86,7 +75,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button  class="btn btn-primary btn-user btn-block">
                                             Sign Up
                                         </button>
                                     </form>
