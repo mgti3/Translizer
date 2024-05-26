@@ -9,8 +9,15 @@ CREATE TABLE `Users` (
 
 CREATE TABLE `Teams` (
   `Tid` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `Team_name` varchar(255),
-  `manager_id` integer
+  `Team_name` varchar(255)
+);
+
+CREATE TABLE `Managers` (
+  `manager_id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `Team_id` integer,
+  `username` varchar(255),
+  `password` varchar(255),
+  `email` varchar(255)
 );
 
 CREATE TABLE `Documents` (
@@ -39,9 +46,9 @@ CREATE TABLE `Reports` (
   `Title` varchar(255)
 );
 
-ALTER TABLE `Users` ADD FOREIGN KEY (`Team_id`) REFERENCES `Teams` (`Tid`);
+ALTER TABLE `Managers` ADD FOREIGN KEY (`Team_id`) REFERENCES `Teams` (`Tid`);
 
-ALTER TABLE `Teams` ADD FOREIGN KEY (`manager_id`) REFERENCES `Users` (`User_id`);
+ALTER TABLE `Users` ADD FOREIGN KEY (`Team_id`) REFERENCES `Teams` (`Tid`);
 
 ALTER TABLE `Documents` ADD FOREIGN KEY (`Team_id`) REFERENCES `Teams` (`Tid`);
 
