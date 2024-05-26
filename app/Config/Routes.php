@@ -14,10 +14,6 @@ $routes->add('employee_orderHistory', 'Employee::orderHistory');
 $routes->add('employee_orderDetails', 'Employee::orderDetails');
 $routes->add('employee_viewDoc', 'Employee::viewDoc');
 $routes->add('admin_dashboard', 'Admin::dashboard');
-<<<<<<< HEAD
-=======
-
->>>>>>> 70c21c2e93f6e45e7799761260034830bc099b2c
 $routes->add('admin_employees_management', 'Admin::adminEmployeesManagement');
 $routes->add('user_dashboard', 'User::dashboard');
 $routes->add('orders_page', 'User::orders');
