@@ -77,12 +77,15 @@ class Home extends BaseController
         if ($user) {
             $session = \Config\Services::session();
             $sessionData = [
-                'user_id' => $user['id'],
+                'user_id' => $user['User_id'],
                 'username' => $user['username'],
-                // 'user_type' => $user['user_type'], // e.g., 'normal', 'manager'
+                'user_type' => $user['Role'], // e.g., 'normal', 'manager'
                 'logged_in' => true
             ];
             $session->set($sessionData);
+
+            log_message('info', 'Session Data: ' . json_encode($session->get()));
+
 
             return redirect()->to('http://localhost/Translizer/public/user_dashboard');
         } else {
@@ -106,6 +109,7 @@ class Home extends BaseController
         'username' => $username,
         'email'    => $email,
         'password' => $password,
+        'Role' => 0,
     ];
 
     // Insert data into the signup model
