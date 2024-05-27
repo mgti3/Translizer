@@ -37,10 +37,12 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         ),
         'C' => 
         array (
+            'Config\\' => 7,
             'CodeIgniter\\' => 12,
         ),
         'A' => 
         array (
+            'App\\Filters\\' => 12,
             'App\\' => 4,
         ),
     );
@@ -74,9 +76,17 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'Config\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/Config',
+        ),
         'CodeIgniter\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeigniter4/framework/system',
+        ),
+        'App\\Filters\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/Filters',
         ),
         'App\\' => 
         array (
@@ -95,8 +105,18 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
     );
 
     public static $classMap = array (
+        'App\\Controllers\\Admin' => __DIR__ . '/../..' . '/app/Controllers/Admin.php',
         'App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/app/Controllers/BaseController.php',
+        'App\\Controllers\\Employee' => __DIR__ . '/../..' . '/app/Controllers/Employee.php',
         'App\\Controllers\\Home' => __DIR__ . '/../..' . '/app/Controllers/Home.php',
+        'App\\Controllers\\Manager' => __DIR__ . '/../..' . '/app/Controllers/Manager.php',
+        'App\\Controllers\\User' => __DIR__ . '/../..' . '/app/Controllers/User.php',
+        'App\\Models\\Login_model' => __DIR__ . '/../..' . '/app/Models/Login_model.php',
+        'App\\Models\\RegistrationModel' => __DIR__ . '/../..' . '/app/Models/RegistrationModel.php',
+        'App\\Models\\Signup_model' => __DIR__ . '/../..' . '/app/Models/Signup_model.php',
+        'App\\Models\\addEmployeeModel' => __DIR__ . '/../..' . '/app/Models/addEmployeeModel.php',
+        'App\\Models\\teamModel' => __DIR__ . '/../..' . '/app/Models/teamModel.php',
+        'App\\Models\\usersModel' => __DIR__ . '/../..' . '/app/Models/usersModel.php',
         'CodeIgniter\\API\\ResponseTrait' => __DIR__ . '/..' . '/codeigniter4/framework/system/API/ResponseTrait.php',
         'CodeIgniter\\Autoloader\\Autoloader' => __DIR__ . '/..' . '/codeigniter4/framework/system/Autoloader/Autoloader.php',
         'CodeIgniter\\Autoloader\\FileLocator' => __DIR__ . '/..' . '/codeigniter4/framework/system/Autoloader/FileLocator.php',
@@ -493,6 +513,42 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'CodeIgniter\\View\\ViewDecoratorInterface' => __DIR__ . '/..' . '/codeigniter4/framework/system/View/ViewDecoratorInterface.php',
         'CodeIgniter\\View\\ViewDecoratorTrait' => __DIR__ . '/..' . '/codeigniter4/framework/system/View/ViewDecoratorTrait.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Config\\App' => __DIR__ . '/../..' . '/app/Config/App.php',
+        'Config\\Autoload' => __DIR__ . '/../..' . '/app/Config/Autoload.php',
+        'Config\\CURLRequest' => __DIR__ . '/../..' . '/app/Config/CURLRequest.php',
+        'Config\\Cache' => __DIR__ . '/../..' . '/app/Config/Cache.php',
+        'Config\\ContentSecurityPolicy' => __DIR__ . '/../..' . '/app/Config/ContentSecurityPolicy.php',
+        'Config\\Cookie' => __DIR__ . '/../..' . '/app/Config/Cookie.php',
+        'Config\\Cors' => __DIR__ . '/../..' . '/app/Config/Cors.php',
+        'Config\\Database' => __DIR__ . '/../..' . '/app/Config/Database.php',
+        'Config\\DocTypes' => __DIR__ . '/../..' . '/app/Config/DocTypes.php',
+        'Config\\Email' => __DIR__ . '/../..' . '/app/Config/Email.php',
+        'Config\\Encryption' => __DIR__ . '/../..' . '/app/Config/Encryption.php',
+        'Config\\Exceptions' => __DIR__ . '/../..' . '/app/Config/Exceptions.php',
+        'Config\\Feature' => __DIR__ . '/../..' . '/app/Config/Feature.php',
+        'Config\\Filters' => __DIR__ . '/../..' . '/app/Config/Filters.php',
+        'Config\\ForeignCharacters' => __DIR__ . '/../..' . '/app/Config/ForeignCharacters.php',
+        'Config\\Format' => __DIR__ . '/../..' . '/app/Config/Format.php',
+        'Config\\Generators' => __DIR__ . '/../..' . '/app/Config/Generators.php',
+        'Config\\Honeypot' => __DIR__ . '/../..' . '/app/Config/Honeypot.php',
+        'Config\\Images' => __DIR__ . '/../..' . '/app/Config/Images.php',
+        'Config\\Kint' => __DIR__ . '/../..' . '/app/Config/Kint.php',
+        'Config\\Logger' => __DIR__ . '/../..' . '/app/Config/Logger.php',
+        'Config\\Migrations' => __DIR__ . '/../..' . '/app/Config/Migrations.php',
+        'Config\\Mimes' => __DIR__ . '/../..' . '/app/Config/Mimes.php',
+        'Config\\Modules' => __DIR__ . '/../..' . '/app/Config/Modules.php',
+        'Config\\Optimize' => __DIR__ . '/../..' . '/app/Config/Optimize.php',
+        'Config\\Pager' => __DIR__ . '/../..' . '/app/Config/Pager.php',
+        'Config\\Paths' => __DIR__ . '/../..' . '/app/Config/Paths.php',
+        'Config\\Publisher' => __DIR__ . '/../..' . '/app/Config/Publisher.php',
+        'Config\\Routing' => __DIR__ . '/../..' . '/app/Config/Routing.php',
+        'Config\\Security' => __DIR__ . '/../..' . '/app/Config/Security.php',
+        'Config\\Services' => __DIR__ . '/../..' . '/app/Config/Services.php',
+        'Config\\Session' => __DIR__ . '/../..' . '/app/Config/Session.php',
+        'Config\\Toolbar' => __DIR__ . '/../..' . '/app/Config/Toolbar.php',
+        'Config\\UserAgents' => __DIR__ . '/../..' . '/app/Config/UserAgents.php',
+        'Config\\Validation' => __DIR__ . '/../..' . '/app/Config/Validation.php',
+        'Config\\View' => __DIR__ . '/../..' . '/app/Config/View.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
