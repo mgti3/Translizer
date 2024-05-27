@@ -15,10 +15,10 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (response) {
-                // console.log('Success:', response);
+                console.log('Success:', response);
             },
             error: function (xhr, status, error) {
-                // console.error('Error:', status, error);
+                console.error('Error:', status, error);
             }
         });
 
