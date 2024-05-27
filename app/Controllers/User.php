@@ -28,13 +28,27 @@ class User extends BaseController
         return view("reports_page");
     }
 
+    public function Information()
+    {
+
+    }
+
     public function submitOrder()
     {
         $cost = 0;
         $time = 0;
-        $file = $this->request->getFile('thefile');
 
-        if (!$file->hasMoved()) {
+        $rules = ['thefile' => ['uploaded[thefile]']];
+
+        if($this->validate($rules))
+        {
+            $file = $this->request->getFile('thefile');
+        }
+       
+        $session = \Config\Services::session();
+        $user_id = $session->get('user_id');
+
+        if ($file->isValid() && !$file->hasMoved()) {
             $filePath = './assets/Docs/' . $file->getName();
             if ($file->move('./assets/Docs')) {
                 // Read file content
@@ -42,8 +56,9 @@ class User extends BaseController
                 if ($fileContent !== false) {
                     // Calculate word count
                     $word_count = str_word_count($fileContent);
-                    $cost = $word_count * 0.2;
-                    $time = $word_count * 0.5;
+                    $cost = $word_count * 0.08;
+                    $time = ($word_count * 0.5) / 60;
+                    $file_path = './assets/Docs/' . $file->getName();
                 } else {
                     log_message('error', 'Failed to read the file content.');
 
@@ -59,10 +74,14 @@ class User extends BaseController
 
         helper(['form', 'url']);
 
-        // Get form data
+
         $language = $this->request->getPost('documentLanguage');
         $target_language = $this->request->getPost('targetLanguage');
         $urgent = $this->request->getPost('urgent');
+
+
+        echo $language;
+        echo $target_language;
 
         $bool_urgent = false;
         if ($urgent) {
@@ -73,6 +92,7 @@ class User extends BaseController
 
         // Prepare data for insertion
         $data = [
+            'User_id' => $user_id,
             'language' => $language,
             'target_language' => $target_language,
             'urgent' => $bool_urgent,
@@ -80,14 +100,17 @@ class User extends BaseController
             'upload_date' => date("Y-m-d"),
             'cost' => $cost,
             'est_time' => $time,
+            'file_path' => $file_path,
         ];
 
         // Insert data into the submitOrder model
         $this->OrderSubmit->insert($data);
 
-        // Response to the client
-        return redirect()->to('/success_page')->with('message', 'Order submitted successfully.');
+        $response = array(
+            'status' => 'success',
+        );
 
+        return $this->response->setJSON($response);
     }
 
 }

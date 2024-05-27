@@ -28,5 +28,5 @@ $routes->add('user_viewTranslation', 'User::user_viewTranslation');
 $routes->post('Home/signup', 'User::signup');
 $routes->post('admin_employees_management', 'Admin::addEmployee');
 $routes->add('admin_team_management', 'Admin::addTeam');
-
+$routes->add('submit', 'User::submitOrder');
 
