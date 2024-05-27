@@ -16,7 +16,7 @@
                     <label for="name">Name</label>
                     <input type="text" name="username" class="form-control" id="name" placeholder="Enter name" required>
                 </div>
-                
+
                 <div class="form-group col-md-6">
                     <label for="email">Email</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
@@ -29,7 +29,7 @@
                     <select name="dep" class="form-control" id="department" required>
                         <option value="" disabled selected>Select department</option>
                         <?php foreach ($departments as $dep): ?>
-                            <option value="<?= $dep['Tid'] ?>"><?= $dep['Team_name'] ?></option>
+                        <option value="<?= $dep['Tid'] ?>"><?= $dep['Team_name'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -70,121 +70,99 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
-                                role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                <thead>
-                                    <tr role="row">
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Position</th>
-                                        <th>Team</th>
-                                        <th>Manager</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Position</th>
-                                        <th>Team</th>
-                                        <th>Manager</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Adham Alterawi</td>
-                                        <td>adham.terawi2001@gmail.com</td>
-                                        <td>Admin</td>
-                                        <td>Admin</td>
-                                        <td>Admin</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item edit-btn" data-id="1"
-                                                        data-name="Adham Alterawi"
-                                                        data-email="adham.terawi2001@gmail.com" data-position="Admin"
-                                                        data-team="Admin" data-manager="Admin">
-                                                        <i class="fas fa-edit"></i> Edit
-                                                    </a>
-                                                    <a href="#" class="dropdown-item delete-btn" data-id="1">
-                                                        <i class="fas fa-trash"></i> Delete
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Ibrahim Ineizeh</td>
-                                        <td>ibrahim0ineizeh@gmail.com</td>
-                                        <td>Manager</td>
-                                        <td>Mathematics</td>
-                                        <td>Ibrahim Ineizeh</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item edit-btn" data-id="2"
-                                                        data-name="Ibrahim Ineizeh"
-                                                        data-email="ibrahim0ineizeh@gmail.com" data-position="Manager"
-                                                        data-team="Mathematics" data-manager="Ibrahim Ineizeh">
-                                                        <i class="fas fa-edit"></i> Edit
-                                                    </a>
-                                                    <a href="#" class="dropdown-item delete-btn" data-id="2">
-                                                        <i class="fas fa-trash"></i> Delete
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Mahmoud Aledwan</td>
-                                        <td>my8977907@gmail.com</td>
-                                        <td>Employee</td>
-                                        <td>Mathematics</td>
-                                        <td>Ibrahim Ineizeh</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item edit-btn" data-id="3"
-                                                        data-name="Mahmoud Aledwan" data-email="my8977907@gmail.com"
-                                                        data-position="Employee" data-team="Mathematics"
-                                                        data-manager="Ibrahim Ineizeh">
-                                                        <i class="fas fa-edit"></i> Edit
-                                                    </a>
-                                                    <a href="#" class="dropdown-item delete-btn" data-id="3">
-                                                        <i class="fas fa-trash"></i> Delete
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- Add more rows as needed -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
+                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
+                    aria-describedby="dataTable_info" style="width: 100%;">
+                    <thead>
+                        <tr role="row">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Position</th>
+                            <th>Team</th>
+                            <th>Manager</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Position</th>
+                            <th>Team</th>
+                            <th>Manager</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <?php foreach ($managers as $manager): ?>
+                        <tr>
+                            <td><?= $manager['manager_id'] ?></td>
+                            <td><?= $manager['username'] ?></td>
+                            <td><?= $manager['email'] ?></td>
+                            <td>Manager</td>
+                            <td><?= $manager['Team_id'] ?></td>
+                            <td><?= $manager['username'] ?></td>
+                            <td>
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item edit-btn"
+                                            data-id="<?= $manager['manager_id'] ?>"
+                                            data-name="<?= $manager['username'] ?>"
+                                            data-email="<?= $manager['email'] ?>" data-position="Manager"
+                                            data-team="<?= $manager['Team_id'] ?>"
+                                            data-manager="<?= $manager['username'] ?>">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a href="#" class="dropdown-item delete-btn"
+                                            data-id="<?= $manager['manager_id'] ?>">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php foreach ($employees as $employee): ?>
+                        <td><?= $employee['User_id'] ?></td>
+                        <td><?= $employee['username'] ?></td>
+                        <td><?= $employee['email'] ?></td>
+                        <td><?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 2) ? 'Employee' : 'User') ?>
+                        </td>
+                        <td><?= $employee['Team_id'] ?></td>
+                        <td><?= $employee['manager_name'] ?></td> <!-- Added manager's name here -->
+                        <td>
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="#" class="dropdown-item edit-btn" data-id="<?= $employee['User_id'] ?>"
+                                        data-name="<?= $employee['username'] ?>" data-email="<?= $employee['email'] ?>"
+                                        data-position="<?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 2) ? 'Employee' : 'User') ?>"
+                                        data-team="<?= $employee['Team_id'] ?>"
+                                        data-manager="<?= ($employee['Role'] == 1) ? 'Admin' : (($employee['Role'] == 2) ? 'Manager' : 'Employee') ?>">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a href="#" class="dropdown-item delete-btn" data-id="<?= $employee['User_id'] ?>">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
+
+
+
+        >
     </div>
 </div>
 

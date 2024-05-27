@@ -11,8 +11,3 @@ class teamModel extends Model
 }
 ?>
 
-    <!-- public function addTeam($teamData)
-    {
-        $this->insert($teamData);
-        return $this->insertID();
-    } -->
