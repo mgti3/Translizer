@@ -1,25 +1,30 @@
 <?php 
 namespace App\Filters;
 
-use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use App\Libraries\CIAuth;
+use CodeIgniter\Filters\FilterInterface;
+use Config\Services;
 
+class AuthFilter implements FilterInterface
+{
+    public function before(RequestInterface $request, $arguments = null)
+    {
+        // Get the session service
+        $session = Services::session();
 
-class AuthFilter implements FilterInterface {
-    public function before(RequestInterface $request, $arguments = null) {
-        $session = $session->get('user_type');
-        if (!$session->get('logged_in')) {
-            return redirect()->to('/login');
-        }
+        // Get the user type from session
+        $userType = $session->get('user_type');
 
-        if ($arguments && !in_array($session->get('user_type'), $arguments)) {
-            return redirect()->to('/unauthorized');
+        // If user is not logged in or user type is not allowed
+        if ($userType === null || !in_array((int)$userType, array_map('intval', $arguments))) {
+            // Redirect to an error page or show a 403 forbidden error
+            return redirect()->to('http://localhost/Translizer/public/oops');
         }
     }
 
-    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
+    {
         // Do something here if needed
     }
 }
