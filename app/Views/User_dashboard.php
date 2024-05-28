@@ -12,18 +12,18 @@
         <h6 class="m-0 font-weight-bold text-primary">Personal Information</h6>
     </div>
     <div class="card-body">
-        <h3>Name: user name </h3>
+        <h3>Name: <span id="username"></span></h3>
         <ul class="statistics-background">
             <li class="statistics-item">
-                <h2 class="stat-number">64</h2>
+                <h2  id="total" class="stat-number">0</h2>
                 <p class="stat-headers">Orders</p>
             </li>
             <li class="statistics-item">
-                <h2 class="stat-number">53</h2>
+                <h2 id="inProcess" class="stat-number">0</h2>
                 <p class="stat-headers">In process</p>
             </li>
             <li class="statistics-item">
-                <h2 class="stat-number">11</h2>
+                <h2 id="finished" class="stat-number">0</h2>
                 <p class="stat-headers">Finished</p>
             </li>
         </ul>

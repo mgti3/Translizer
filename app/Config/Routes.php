@@ -34,7 +34,6 @@ $routes->add('login', 'Home::login');
 $routes->add('register', 'Home::register');
 $routes->add('landing', 'Home::landing');
 $routes->add('oops', 'Home::oops');
-$routes->post('Home/signup', 'User::signup');
 $routes->get('logout', 'Home::logout');
 
 
@@ -70,4 +69,6 @@ $routes->group('', ['filter' => 'auth:2'], function ($routes) {
     $routes->add('reports_page', 'User::reports');
     $routes->add('user_viewTranslation', 'User::user_viewTranslation');
     $routes->add('submit', 'User::submitOrder');
+    $routes->add('reportSubmit', 'User::reportSubmit');
+    $routes->add('userDashboard_load', 'User::Information');
 });
