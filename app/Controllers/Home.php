@@ -95,7 +95,7 @@ class Home extends BaseController
             if($user['Role'] == 0){
                 return redirect()->to('http://localhost/Translizer/public/admin_dashboard');
             }elseif($user['Role'] == 1){
-                return redirect()->to('http://localhost/Translizer/public/employee_dahsboard');
+                return redirect()->to('http://localhost/Translizer/public/employee_dashboard');
             }elseif($user['Role'] == 2){
                 return redirect()->to('http://localhost/Translizer/public/user_dashboard');
             }
@@ -126,19 +126,6 @@ class Home extends BaseController
 
         // Load helper functions for form and URL handling
         helper(['form', 'url']);
-        $validation = \Config\Services::validation();
-        $validation->setRules([
-            'username' => 'required|min_length[5]|max_length[255]',
-            'email'    => 'required|valid_email|is_unique[users.email]',
-            'password' => 'required|min_length[8]',
-        ]);
-        
-        // Set custom error messages (optional)
-        $validation->setMessages([
-            'email' => [
-                'is_unique' => 'The email address is already registered.'
-            ]
-        ]);
         // Get form data
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');

@@ -37,7 +37,8 @@ class Admin extends BaseController
     $data['departments'] = $teamsModel->findAll();
     
     $usersModel = new usersModel();
-    $data['employees'] = $usersModel->findAll();
+    $data['employees'] = $usersModel->where('Role', 1)->findAll();
+    $data['admins'] = $usersModel->where('Role', 0)->findAll();
 
     // Load the managers model
     $managersModel = new managersModel();
@@ -60,10 +61,10 @@ class Admin extends BaseController
 
     return view("admin_employees_management", $data);
 }
-    public function addEmployee()
-    {
-        $teamModel = new teamModel();
-        $data['departments'] = $teamModel->findAll();
+public function addEmployee()
+{
+    $teamModel = new teamModel();
+    $data['departments'] = $teamModel->findAll();
 
     if ($this->request->getMethod() === 'POST') {
         $userData = [
@@ -75,7 +76,7 @@ class Admin extends BaseController
         ];
 
         // Check Role value
-        if ($userData['Role'] == 1) {
+        if ($userData['Role'] == 4) {
             // If Role is 1 (Manager), insert data into managers table
             $managersModel = new managersModel();
             if ($managersModel->insert($userData)) {
@@ -93,9 +94,9 @@ class Admin extends BaseController
             }
         }
     }
-
     return view('admin_employees_management', $data); 
-    }
+}
+
 
     public function __construct()
     {
@@ -140,38 +141,77 @@ class Admin extends BaseController
 
     $data['employees'] = [];
     foreach ($data['teams'] as $team) {
-        $employees = $userModel->where('Role', 2)->where('Team_id', $team['Tid'])->findAll();
+        $employees = $userModel->where('Role', 1)->where('Team_id', $team['Tid'])->findAll();
         $data['employees'][$team['Tid']] = $employees;
     }
     
     return view('admin_team_management', $data);
 }
-// public function addTeam()
-// {
-//     $userModel = new usersModel();
-//     $data['teams'] = $this->teamModel->findAll();
 
-//     // Load helper functions for form and URL handling
-//     helper(['form', 'url']);
 
-//     // Create an instance of the managers model
-//     $managersModel = new managersModel();
-//     $data['managers'] = [];
-//     foreach ($data['teams'] as $team) {
-//         $managerName = $managersModel->where('Team_id', $team['Tid'])->first();
-//         if ($managerName) {
-//             $data['managers'][$team['Tid']] = $managerName['username'];
-//         } else {
-//             $data['managers'][$team['Tid']] = null;
-//         }
-//     }
 
-//     // جلب الموظفين الذين لديهم الـRole المساوي للـ1
-//     $employeesModel = new usersModel();
-//     $data['employees'] = $employeesModel->where('Role', 1)->findAll();
+public function editEmployee()
+{
+    if ($this->request->getMethod() === 'POST') {
+        $userData = [
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'Role' => $this->request->getPost('Role'),
+            'Team_id' => $this->request->getPost('dep'),
+            'password' => $this->request->getPost('password'), // Added password field
+        ];
 
-//     return view('admin_team_management', $data);
-// }
+        $managerData = [
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'Team_id' => $this->request->getPost('dep'),
+            'password' => $this->request->getPost('password'), // Added password field
+        ];
+
+        $userId = $this->request->getPost('User_id');
+        $managerId = $this->request->getPost('manager_id'); // اضافة هذا السطر للحصول على معرف المدير
+
+        $usersModel = new usersModel();
+        $managersModel = new managersModel();
+
+        // Check if the role is being changed from Employee/Admin to Manager
+        if ($userData['Role'] == 4) {
+            // Remove from users table and insert into managers table
+            $managerData['password'] = ''; // Clear password field for managers
+            if ($usersModel->delete($userId)) {
+                if ($managersModel->insert($managerData)) {
+                    return redirect()->to('http://localhost/Translizer/public/admin_employees_management'); 
+                } else {
+                    return "Error occurred while editing employee.";
+                }
+            } else {
+                return "Error occurred while editing employee.";
+            }
+        } else {
+            // Check if the role is being changed from Manager to Employee/Admin
+            $oldManagerData = $managersModel->find($managerId); // Find the user in managers table
+            if ($oldManagerData) {
+                // Remove from managers table and insert into users table
+                if ($managersModel->delete($managerId)) {
+                    if ($usersModel->insert($userData)) {
+                        return redirect()->to('http://localhost/Translizer/public/admin_employees_management'); 
+                    } else {
+                        return "Error occurred while editing manager.";
+                    }
+                } else {
+                    return "Error occurred while editing manager.";
+                }
+            } else {
+                // Update user data directly
+                if ($usersModel->update($userId, $userData)) {
+                    return redirect()->to('http://localhost/Translizer/public/admin_employees_management'); 
+                } else {
+                    return "Error occurred while editing employee.";
+                }
+            }
+        }
+    }
+}
 
 
 }
