@@ -67,7 +67,7 @@ $routes->group('', ['filter' => 'auth:2'], function ($routes) {
     $routes->add('user_dashboard', 'User::dashboard');
     $routes->add('orders_page', 'User::orders');
     $routes->add('reports_page', 'User::reports');
-    $routes->add('user_viewTranslation', 'User::user_viewTranslation');
+    $routes->add('user_viewTranslation/(:any)/(:any)', 'User::user_viewTranslation/$1/$2');
     $routes->add('submit', 'User::submitOrder');
     $routes->add('reportSubmit', 'User::reportSubmit');
     $routes->add('userDashboard_load', 'User::Information');

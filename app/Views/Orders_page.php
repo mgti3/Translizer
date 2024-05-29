@@ -38,7 +38,7 @@
                                 <td><?= $order['cost'] ?></td>
                                 <td><?= $order['est_time'] ?></td>
                                 <td><?= $order['state'] ?></td>
-                                <td><?= $order['Translation_path'] ?></td>
+                                <td><a href="/Translizer/public/user_viewTranslation/<?=$order['Translation_path']?>/<?=$order['Document_id']?>"><?= $order['Translation_path'] ?></a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

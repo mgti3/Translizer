@@ -35,6 +35,14 @@ class User extends BaseController
         return view("reports_page");
     }
 
+    public function user_viewTranslation($file_name, $order_id): string
+    {
+        $data['name'] = $file_name;
+        $data['order_id'] = $order_id;
+
+        return view('user_viewTranslation', $data);
+    }
+
     public function Information()
     {
         helper(['form', 'url']);
@@ -117,7 +125,7 @@ class User extends BaseController
                     $word_count = str_word_count($fileContent);
                     $cost = $word_count * 0.08;
                     $time = ($word_count * 0.5) / 60;
-                    $file_path = './assets/Docs/' . $file->getName();
+                    $file_name = $file->getName();
                 } else {
                     log_message('error', 'Failed to read the file content.');
 
@@ -152,7 +160,7 @@ class User extends BaseController
             'upload_date' => date("Y-m-d"),
             'cost' => $cost,
             'est_time' => $time,
-            'file_path' => $file_path,
+            'file_path' => $file_name,
         ];
 
         // Insert data into the submitOrder model
