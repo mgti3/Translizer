@@ -34,8 +34,10 @@ $routes->add('login', 'Home::login');
 $routes->add('register', 'Home::register');
 $routes->add('landing', 'Home::landing');
 $routes->add('oops', 'Home::oops');
-$routes->post('Home/signup', 'User::signup');
 $routes->get('logout', 'Home::logout');
+$routes->post('registration', 'Home::newRegister');
+$routes->post('signingIn', 'Home::Ulogin');
+
 
 
 // Admin Routes (assuming admin user type is 1)
