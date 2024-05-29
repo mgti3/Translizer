@@ -31,20 +31,21 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Personal Information</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Order Submission</h6>
     </div>
     <div class="collapse show" id="collapseCardExample">
         <div class="card-body">
             <div class="container text-left">
-                <form id="orderSubmit" enctype="multipart/form-data">
+                <form class="user" id="orderSubmit" enctype="multipart/form-data">
 
                     <div class="mb-3">
                         <label for="documentLanguage" class="ml-0">Document Language:</label>
                         <select id="documentLanguage" name="documentLanguage" class="form-control form-control-solid">
-                            <option value="English">Arabic</option>
+                            <option value="Arabic">Arabic</option>
                             <option value="English">English</option>
                             <option value="Spanish">Spanish</option>
                             <option value="French">French</option>
+                            <option value="German">German</option>
                         </select>
                     </div>
 
@@ -52,7 +53,7 @@
                     <select id="targetLanguage" name="targetLanguage" class="form-control form-control-solid">
                         <option value="Spanish">Spanish</option>
                         <option value="English">English</option>
-                        <option value="English">Arabic</option>
+                        <option value="Arabic">Arabic</option>
                         <option value="French">French</option>
                         <option value="German">German</option>
                     </select>

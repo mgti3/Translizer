@@ -32,7 +32,12 @@ class User extends BaseController
 
     public function reports(): string
     {
-        return view("reports_page");
+        $session = \Config\Services::session();
+        $user_id = $session->get('user_id');
+
+        $data['orders'] = $this->OrderSubmit->where('User_id', $user_id)->findAll();
+
+        return view("reports_page", $data);
     }
 
     public function user_viewTranslation($file_name, $order_id): string

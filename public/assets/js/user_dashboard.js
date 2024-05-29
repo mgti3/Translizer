@@ -15,6 +15,7 @@ $(document).ready(function () {
             let inProcess;
             let finished;
             let username;
+            let logo_name;
 
             if (document.getElementById('total')) {
                 total = document.getElementById('total')
@@ -32,8 +33,13 @@ $(document).ready(function () {
             }
 
             if (document.getElementById('username')) {
-                completed = document.getElementById('username')
-                completed.innerText = response['name'];
+                username = document.getElementById('username')
+                username.innerText = response['name'];
+            }
+
+            if (document.getElementById('nametopright')) {
+                logo_name = document.getElementById('nametopright')
+                logo_name.innerText = response['name'];
             }
         },
         error: function (xhr, status, error) {

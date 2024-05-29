@@ -15,9 +15,13 @@
             <div class="mb-0"><label for="exampleFormControlTextarea1" class="ml-0">Description</label><textarea
                     class="form-control" id="description" name="description" rows="3"></textarea></div>
 
-            <div class="mb-0"><label for="exampleFormControlTextarea1" class="ml-0" style="margin-top: 15px">File
-                    Id</label><input type="number" min="0" class="form-control" id="file_id" name="file_id"
-                    rows="3"></input>
+            <div class="mb-0">
+                <label for="documentLanguage" class="ml-0">File id</label>
+                <select id="file_id" name="file_id" class="form-control form-control-solid">
+                    <?php foreach ($orders as $order): ?>
+                        <option value="<?= $order['Document_id'] ?>"><?= $order['Document_id'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <!-- <a href="#" class="btn btn-primary btn-icon-split" style="margin-top: 15px; background-color: #153448 ">
