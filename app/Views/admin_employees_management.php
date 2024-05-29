@@ -9,23 +9,22 @@
 
 <div class="container mt-5">
     <div class="form-section">
-        <h2><?= isset($editMode) ? 'Edit Employee' : 'Register New Employee' ?></h2>
-        <form class="user" method="POST"
-            action="<?= isset($editMode) ? "Admin/editEmployee" : "Admin/addEmployee" ?>">
-            <?php if (isset($editMode)): ?>
+        <!-- حقل خفي لتحديد العملية -->
+        <input type="hidden" name="operation" id="operation" value="add">
+        <h2>Register New Employee</h2>
+        <form class="user" method="POST" action="Admin/addEditEmployee">
+            <?php if (isset($editMode) && $editMode === true): ?>
             <input type="hidden" name="user_id" value="<?= $employeeData['User_id'] ?>">
             <?php endif; ?>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Name</label>
-                    <input type="text" name="username" class="form-control" id="name" placeholder="Enter name"
-                        value="<?= isset($editMode) ? $employeeData['username'] : '' ?>" required>
+                    <input type="text" name="username" class="form-control" id="name" placeholder="Enter name" required>
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email"
-                        value="<?= isset($editMode) ? $employeeData['email'] : '' ?>" required>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
                 </div>
             </div>
 
@@ -46,11 +45,9 @@
                     <label for="position">Position</label>
                     <select name="Role" class="form-control" id="position" required>
                         <option value="" disabled selected>Select position</option>
-                        <option value="0" <?= isset($editMode) && $employeeData['Role'] == 0 ? 'selected' : '' ?>>Admin</option>
-                        <option value="4" <?= isset($editMode) && $employeeData['Role'] == 4 ? 'selected' : '' ?>>
-                            Manager</option>
-                        <option value="1" <?= isset($editMode) && $employeeData['Role'] == 1 ? 'selected' : '' ?>>
-                            Employee</option>
+                        <option value="0">Admin</option>
+                        <option value="4">Manager</option>
+                        <option value="1">Employee</option>
                     </select>
                 </div>
             </div>
@@ -60,14 +57,8 @@
                     <input type="password" name="password" class="form-control" id="password"
                         placeholder="Enter password" required>
                 </div>
-
-                <div class="form-group col-md-6">
-                    <label for="conPassword">Confirm Password</label>
-                    <input type="password" name="conPassword" class="form-control" id="conPassword"
-                        placeholder="Enter password" required>
-                </div>
             </div>
-            <button type="submit" class="btn btn-primary mb-4"><?= isset($editMode) ? 'Edit' : 'Submit' ?></button>
+            <button type="submit" class="btn btn-primary mb-4">Submit</button>
         </form>
     </div>
 
@@ -79,8 +70,8 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
-                    aria-describedby="dataTable_info" style="width: 100%;">
+                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                    role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                     <!-- Table Header -->
                     <thead>
                         <tr role="row">
@@ -102,7 +93,8 @@
                             <td><?= $employee['User_id'] ?></td>
                             <td><?= $employee['username'] ?></td>
                             <td><?= $employee['email'] ?></td>
-                            <td><?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 1) ? 'Employee' : 'Manager') ?></td>
+                            <td><?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 1) ? 'Employee' : 'Manager') ?>
+                            </td>
                             <td><?= $employee['Team_id'] ?></td>
                             <td><?= $employee['manager_name'] ?></td>
                             <!-- Actions column with edit and delete buttons -->
@@ -113,7 +105,8 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <!-- Edit button -->
-                                        <a href="#" class="dropdown-item edit-btn" data-id="<?= $employee['User_id'] ?>"
+                                        <a href="#" class="dropdown-item edit-btn"
+                                            data-id="<?= $employee['User_id'] ?>"
                                             data-name="<?= $employee['username'] ?>"
                                             data-email="<?= $employee['email'] ?>"
                                             data-position="<?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 1) ? 'Employee' : 'Manager') ?>"
@@ -138,6 +131,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 

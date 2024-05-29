@@ -18,7 +18,23 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group" id="taskList">
-                        <!-- Tasks will be added here dynamically -->
+                        <?php foreach ($documents as $document): ?>
+                        <li class="list-group-item mb-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="./assets/img/logo-alternative.png" style="height: auto; width: 150px;"
+                                        class="card-img" alt="Static Image">
+                                    <hr class="my-2">
+                                </div>
+                                <div class="col-md-8">
+                                    <h5 class="card-title"><?php echo $document['language']; ?> to
+                                        <?php echo $document['target_language']; ?></h5>
+                                    <p class="card-text">Estimated Time: <?php echo $document['est_time']; ?> hours</p>
+                                    <p class="card-text">Cost: <?php echo $document['cost']; ?> USD</p>
+                                </div>
+                            </div>
+                        </li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
