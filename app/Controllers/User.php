@@ -76,32 +76,6 @@ class User extends BaseController
 
     public function reportSubmit()
     {
-        // helper(['form', 'url']);
-
-        // $session = \Config\Services::session();
-        // $user_id = $session->get('user_id');
-
-        // $title = $this->request->getPost('title');
-        // $description = $this->request->getPost('description');
-        // $file_id = $this->request->getPost('file_id');
-
-        // $data = [
-        //     'user_id' => $user_id,
-        //     'status' => 'Open',
-        //     'Translation_id' => $file_id,
-        //     'content' => $description,
-        //     'rep_date' => date("Y-m-d"),
-        //     'Title' => $title,
-        // ];
-
-        // // Insert data into the submitOrder model
-        // $this->report_model->insert($data);
-
-        // $response = array(
-        //     'status' => 'success',
-        // );
-
-        // return $this->response->setJSON($response);
 
         helper(['form', 'url']);
 

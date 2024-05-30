@@ -1,9 +1,16 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\OrderSubmission_model;
 
 class Employee extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->OrderSubmit = new OrderSubmission_model();
+    }
+    
     public function dashboard(): string
     {
         return view("employee_dashboard");
@@ -11,7 +18,12 @@ class Employee extends BaseController
 
     public function orderHistory(): string
     {
-        return view("employee_orderHistory");
+        $session = \Config\Services::session();
+        $user_id = $session->get('user_id');
+
+        $data['orders'] = $this->OrderSubmit->where('User_id', $user_id)->findAll();
+
+        return view("employee_orderHistory", $data);
     }
 
     public function orderDetails(): string
