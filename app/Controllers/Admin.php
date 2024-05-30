@@ -37,8 +37,7 @@ class Admin extends BaseController
     $data['departments'] = $teamsModel->findAll();
     
     $usersModel = new usersModel();
-    $data['employees'] = $usersModel->where('Role', 1)->findAll();
-    $data['admins'] = $usersModel->where('Role', 0)->findAll();
+    $data['employees'] = $usersModel->findAll();
 
     // Load the managers model
     $managersModel = new managersModel();
@@ -61,47 +60,115 @@ class Admin extends BaseController
 
     return view("admin_employees_management", $data);
 }
+
+//     public function adminEmployeesManagement()
+// {
+//     $teamsModel = new teamModel();
+//     $data['departments'] = $teamsModel->findAll();
+    
+//     $usersModel = new usersModel();
+//     $data['employees'] = $usersModel->where('Role', 1)->findAll();
+//     $data['admins'] = $usersModel->where('Role', 0)->findAll();
+
+//     // Load the managers model
+//     $managersModel = new managersModel();
+//     $data['managers'] = $managersModel->findAll();
+
+//     // Loop through the employees to fetch and attach the manager's name
+//     foreach ($data['employees'] as &$employee) {
+//         foreach ($data['managers'] as $manager) {
+//             if ($manager['Team_id'] == $employee['Team_id']) {
+//                 $employee['manager_name'] = $manager['username'];
+//                 break;
+//             }
+//         }
+//         // If no manager is found, assign a default value
+//         if (!isset($employee['manager_name'])) {
+//             $employee['manager_name'] = "No manager assigned";
+//         }
+//     }
+
+
+//     return view("admin_employees_management", $data);
+// }
+// public function addEmployee()
+// {
+//     $teamModel = new teamModel();
+//     $data['departments'] = $teamModel->findAll();
+
+//     if ($this->request->getMethod() === 'POST') {
+//         // إذا لم يتم إرسال edit_mode أو كانت قيمته false، فسنقوم بالإضافة
+//         if ($this->request->getPost('edit_mode') !== 'true') {
+//             $userData = [
+//                 'username' => $this->request->getPost('username'),
+//                 'email' => $this->request->getPost('email'),
+//                 'password' => $this->request->getPost('password'),
+//                 'Role' => $this->request->getPost('Role'),
+//                 'Team_id' => $this->request->getPost('dep')
+//             ];
+
+//             // Check Role value
+//             if ($userData['Role'] == 4) {
+//                 // If Role is 1 (Manager), insert data into managers table
+//                 $managersModel = new managersModel();
+//                 if ($managersModel->insert($userData)) {
+//                     return redirect()->to('http://localhost/Translizer/public/admin_employees_management'); 
+//                 } else {
+//                     return "Error occurred while adding manager.";
+//                 }
+//             } else {
+//                 // If Role is not 1 (Admin or Employee), insert data into users table
+//                 $usersModel = new usersModel();
+//                 if ($usersModel->insert($userData)) {
+//                     return redirect()->to('http://localhost/Translizer/public/admin_employees_management'); 
+//                 } else {
+//                     return "Error occurred while adding employee.";
+//                 }
+//             }
+//         } else {
+//             // If edit_mode is true, redirect to the appropriate controller method for editing
+//             return redirect()->to('http://localhost/Translizer/public/Admin/editEmployee');
+//         }
+//     }
+//     return view('admin_employees_management', $data); 
+// }
+
 public function addEmployee()
-{
-    $teamModel = new teamModel();
-    $data['departments'] = $teamModel->findAll();
+    {
+        $teamModel = new teamModel();
+        $data['departments'] = $teamModel->findAll();
 
     if ($this->request->getMethod() === 'POST') {
-        // إذا لم يتم إرسال edit_mode أو كانت قيمته false، فسنقوم بالإضافة
-        if ($this->request->getPost('edit_mode') !== 'true') {
-            $userData = [
-                'username' => $this->request->getPost('username'),
-                'email' => $this->request->getPost('email'),
-                'password' => $this->request->getPost('password'),
-                'Role' => $this->request->getPost('Role'),
-                'Team_id' => $this->request->getPost('dep')
-            ];
+        $userData = [
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'password' => $this->request->getPost('password'),
+            'Role' => $this->request->getPost('Role'),
+            'Team_id' => $this->request->getPost('dep')
+        ];
 
-            // Check Role value
-            if ($userData['Role'] == 4) {
-                // If Role is 1 (Manager), insert data into managers table
-                $managersModel = new managersModel();
-                if ($managersModel->insert($userData)) {
-                    return redirect()->to('http://localhost/Translizer/public/admin_employees_management'); 
-                } else {
-                    return "Error occurred while adding manager.";
-                }
+        // Check Role value
+        if ($userData['Role'] == 1) {
+            // If Role is 1 (Manager), insert data into managers table
+            $managersModel = new managersModel();
+            if ($managersModel->insert($userData)) {
+                return redirect()->to('http://localhost/Translizer/public/admin_employees_management'); 
             } else {
-                // If Role is not 1 (Admin or Employee), insert data into users table
-                $usersModel = new usersModel();
-                if ($usersModel->insert($userData)) {
-                    return redirect()->to('http://localhost/Translizer/public/admin_employees_management'); 
-                } else {
-                    return "Error occurred while adding employee.";
-                }
+                return "Error occurred while adding manager.";
             }
         } else {
-            // If edit_mode is true, redirect to the appropriate controller method for editing
-            return redirect()->to('http://localhost/Translizer/public/Admin/editEmployee');
+            // If Role is not 1 (Admin or Employee), insert data into users table
+            $usersModel = new usersModel();
+            if ($usersModel->insert($userData)) {
+                return redirect()->to('http://localhost/Translizer/public/admin_employees_management'); 
+            } else {
+                return "Error occurred while adding employee.";
+            }
         }
     }
+
     return view('admin_employees_management', $data); 
-}
+    }
 
 
     public function __construct()
@@ -365,3 +432,7 @@ public function addEditEmployee()
 }
 
 }
+
+
+ 
+
