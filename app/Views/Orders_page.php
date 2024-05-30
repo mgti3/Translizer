@@ -15,6 +15,7 @@
                             <th>Id</th>
                             <th>Order date</th>
                             <th>Cost</th>
+                            <th>Time Estimation</th>
                             <th>State</th>
                             <th>Translation</th>
                         </tr>
@@ -24,39 +25,22 @@
                             <th>Id</th>
                             <th>Order date</th>
                             <th>Cost</th>
+                            <th>Time Estimation</th>
                             <th>State</th>
                             <th>Translation</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2024/05/01</td>
-                            <td>$450.75</td>
-                            <td>Done</td>
-                            <td><a href="user_viewTranslation">Translation-1</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>2024/05/02</td>
-                            <td>$320.40</td>
-                            <td>In Process</td>
-                            <td><a href="user_viewTranslation">Translation-2</a></td>
-                        </tr>
-                        <tr>
-                            <td>99</td>
-                            <td>2024/05/30</td>
-                            <td>$890.60</td>
-                            <td>Done</td>
-                            <td><a href="user_viewTranslation">Translation-99</a></td>
-                        </tr>
-                        <tr>
-                            <td>100</td>
-                            <td>2024/05/31</td>
-                            <td>$550.20</td>
-                            <td>In Process</td>
-                            <td><a href="user_viewTranslation">Translation-100</a></td>
-                        </tr>
+                        <?php foreach ($orders as $order): ?>
+                            <tr>
+                                <td><?= $order['Document_id'] ?></td>
+                                <td><?= $order['upload_date'] ?></td>
+                                <td><?= $order['cost'] ?></td>
+                                <td><?= $order['est_time'] ?></td>
+                                <td><?= $order['state'] ?></td>
+                                <td><a href="/Translizer/public/user_viewTranslation/<?=$order['Translation_path']?>/<?=$order['Document_id']?>"><?= $order['Translation_path'] ?></a></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
