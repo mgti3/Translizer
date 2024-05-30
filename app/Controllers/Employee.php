@@ -37,7 +37,15 @@ class Employee extends BaseController
                            ->countAllResults();
         $data['ordersCount'] = $this->OrderSubmit->where('employee_id', $user_id)->countAllResults();
         $data['orders'] = $this->OrderSubmit->where('employee_id', $user_id)->findAll();
-        $data['progress'] = floor(($data['completed'] / $data['ordersCount']) * 100);
+
+        if($data['ordersCount'] == 0)
+        {
+            $data['progress'] = 0;
+        }
+        else{
+            $data['progress'] = floor(($data['completed'] / $data['ordersCount']) * 100);
+        }
+        
 
 
         return view("employee_dashboard",$data);
@@ -48,7 +56,7 @@ class Employee extends BaseController
         $session = \Config\Services::session();
         $user_id = $session->get('user_id');
 
-        $data['orders'] = $this->OrderSubmit->where('User_id', $user_id)->findAll();
+        $data['orders'] = $this->OrderSubmit->where('employee_id', $user_id)->findAll();
 
         return view("employee_orderHistory", $data);
     }
