@@ -36,6 +36,8 @@
     <div class="collapse show" id="collapseCardExample">
         <div class="card-body">
             <div class="container text-left">
+            <div class="text-success" id="success-message"></div>
+            <div class="text-danger" id="errors"></div>
                 <form class="user" id="orderSubmit" enctype="multipart/form-data">
 
                     <div class="mb-3">

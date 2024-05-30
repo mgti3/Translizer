@@ -7,6 +7,8 @@
         <h6 class="m-0 font-weight-bold text-primary">Report a problem</h6>
     </div>
     <div class="card-body">
+        <div class="text-danger" id="errors"></div>
+        <div class="text-success" id="success-message" style="font-size= 1.2rem;"></div>
         <form id="report">
             <div class="mb-3"><label for="exampleFormControlInput1" class="ml-0">Title</label><input
                     class="form-control" id="title" name="title" type="text" placeholder="Wrong Translation...">

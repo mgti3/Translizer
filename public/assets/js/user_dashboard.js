@@ -10,12 +10,10 @@ $(document).ready(function () {
         cache: false,
         processData: false,
         success: function (response) {
-            console.log('Success:', response);
             let total;
             let inProcess;
             let finished;
             let username;
-            let logo_name;
 
             if (document.getElementById('total')) {
                 total = document.getElementById('total')
@@ -33,14 +31,10 @@ $(document).ready(function () {
             }
 
             if (document.getElementById('username')) {
-                username = document.getElementById('username')
-                username.innerText = response['name'];
+                completed = document.getElementById('username')
+                completed.innerText = response['name'];
             }
 
-            if (document.getElementById('nametopright')) {
-                logo_name = document.getElementById('nametopright')
-                logo_name.innerText = response['name'];
-            }
         },
         error: function (xhr, status, error) {
             console.error('Error:', status, error);
@@ -58,30 +52,54 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (response) {
-                console.log('Success:', response);
-                let total;
-                let inProcess;
-                let finished;
-                let username;
+                if (response.status === 'success') {
+                    let total;
+                    let inProcess;
+                    let finished;
+                    let username;
+                    let logo_name;
 
-                if (document.getElementById('total')) {
-                    total = document.getElementById('total')
-                    total.innerText = response['data']['total'];
-                }
+                    if (document.getElementById('total')) {
+                        total = document.getElementById('total')
+                        total.innerText = response['data']['total'];
+                    }
 
-                if (document.getElementById('inProcess')) {
-                    inProcess = document.getElementById('inProcess')
-                    inProcess.innerText = response['data']['inProcess'];
-                }
+                    if (document.getElementById('inProcess')) {
+                        inProcess = document.getElementById('inProcess')
+                        inProcess.innerText = response['data']['inProcess'];
+                    }
 
-                if (document.getElementById('finished')) {
-                    finished = document.getElementById('finished')
-                    finished.innerText = response['data']['completed'];
-                }
+                    if (document.getElementById('finished')) {
+                        finished = document.getElementById('finished')
+                        finished.innerText = response['data']['completed'];
+                    }
 
-                if (document.getElementById('username')) {
-                    completed = document.getElementById('username')
-                    completed.innerText = response['name'];
+                    if (document.getElementById('username')) {
+                        username = document.getElementById('username')
+                        username.innerText = response['name'];
+                    }
+
+                    if (document.getElementById('nametopright')) {
+                        logo_name = document.getElementById('nametopright')
+                        logo_name.innerText = response['name'];
+                    }
+
+                    document.getElementById("errors").innerHTML = "";
+
+                    let ur = document.getElementById('customCheck');
+                    let file = document.getElementById('thefile');
+                    ur.checked = false;
+                    file.value = '';
+
+                    const successMessage = document.getElementById('success-message');
+                    successMessage.textContent = response.status;
+                    successMessage.style.display = 'block';
+
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000); // Adjust the time as needed
+                } else if (response.status === 'error') {
+                    document.getElementById("errors").innerHTML = (response.validate);
                 }
             },
             error: function (xhr, status, error) {
@@ -89,10 +107,7 @@ $(document).ready(function () {
             }
         });
 
-        let ur = document.getElementById('customCheck');
-        let file = document.getElementById('thefile');
-        ur.checked = false;
-        file.value = '';
+
     });
 
     $('#report').submit(function (event) {
@@ -106,18 +121,32 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (response) {
-                console.log('Success:', response);
+                if (response.status === 'success') {
+                    document.getElementById("errors").innerHTML = "";
+
+                    let title = document.getElementById('title');
+                    let desc = document.getElementById('description');
+                    let fileId = document.getElementById('file_id');
+                    title.value = '';
+                    desc.value = '';
+                    fileId.value = '';
+
+                    const successMessage = document.getElementById('success-message');
+                    successMessage.textContent = response.status;
+                    successMessage.style.display = 'block';
+
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000); // Adjust the time as needed
+                } else if (response.status === 'error') {
+                    document.getElementById("errors").innerHTML = (response.validate);
+                }
             },
             error: function (xhr, status, error) {
                 console.error('Error:', status, error);
             }
         });
 
-        let title = document.getElementById('title');
-        let desc = document.getElementById('description');
-        let fileId = document.getElementById('file_id');
-        title.value = '';
-        desc.value = '';
-        fileId.value = '';
+
     });
 });
