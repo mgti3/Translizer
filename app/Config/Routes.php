@@ -59,7 +59,7 @@ $routes->group('', ['filter' => 'auth:4'], function ($routes) {
 $routes->group('', ['filter' => 'auth:1'], function ($routes) {
     $routes->add('employee_dashboard', 'Employee::dashboard');
     $routes->add('employee_orderHistory', 'Employee::orderHistory');
-    $routes->add('employee_orderDetails', 'Employee::orderDetails');
+    $routes->add('employee_orderDetails/(:any)/(:any)/(:any)', 'Employee::orderDetails/$1/$2/$3');
     $routes->add('employee_viewDoc', 'Employee::viewDoc');
     $routes->add('employee_translationUpload', 'Employee::employee_translationUpload');
     $routes->add('employee_viewTranslation', 'Employee::employee_viewTranslation');

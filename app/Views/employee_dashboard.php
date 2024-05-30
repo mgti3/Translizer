@@ -101,7 +101,7 @@
                         <strong>Document Length:</strong><br>
                         3567 Words
                     </p>
-                    <a href="employee_orderDetails" class="btn view my-1">View Order Details</a>
+                    <a href="/Translizer/public/employee_orderDetails/<?=$order['file_path']?>/<?=$order['Document_id']?>/<?=$order['upload_date']?>" class="btn view my-1">View Order Details</a>
                     <a href="employee_translationUpload" class="btn mark my-1">Upload Translation</a>
                 </div>
                 <div class="card-footer text-muted">

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\addEmployeeModel;
 use App\Models\OrderSubmission_model;
 
@@ -21,7 +22,7 @@ class Employee extends BaseController
     {
         $session = \Config\Services::session();
         $user_id = $session->get('user_id');
-        $username= $session->get('username');
+        $username = $session->get('username');
 
 
         $data = [
@@ -33,22 +34,20 @@ class Employee extends BaseController
             'username' => $username
         ];
         $data['completed'] = $this->OrderSubmit->where('employee_id', $user_id)
-                           ->where('state', 'done')
-                           ->countAllResults();
+            ->where('state', 'done')
+            ->countAllResults();
         $data['ordersCount'] = $this->OrderSubmit->where('employee_id', $user_id)->countAllResults();
         $data['orders'] = $this->OrderSubmit->where('employee_id', $user_id)->findAll();
 
-        if($data['ordersCount'] == 0)
-        {
+        if ($data['ordersCount'] == 0) {
             $data['progress'] = 0;
-        }
-        else{
+        } else {
             $data['progress'] = floor(($data['completed'] / $data['ordersCount']) * 100);
         }
-        
 
 
-        return view("employee_dashboard",$data);
+
+        return view("employee_dashboard", $data);
     }
 
     public function orderHistory(): string
@@ -61,9 +60,17 @@ class Employee extends BaseController
         return view("employee_orderHistory", $data);
     }
 
-    public function orderDetails(): string
+    public function orderDetails($file_path, $Doc_id, $upload_date): string
     {
-        return view("employee_orderDetails");
+        $session = \Config\Services::session();
+        $username = $session->get('username');
+        $data = [
+            'Document_id' => $Doc_id,
+            'file_path' => $file_path,
+            'username' => $username,
+            'upload_date' => $upload_date,
+        ];
+        return view("employee_orderDetails", $data);
     }
 
     public function viewDoc(): string
@@ -76,7 +83,7 @@ class Employee extends BaseController
         return view("employee_translationUpload");
     }
 
-    public function employee_viewTranslation(): string 
+    public function employee_viewTranslation(): string
     {
         return view("employee_viewTranslation");
     }
