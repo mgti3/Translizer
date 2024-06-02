@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\addEmployeeModel;
 use App\Models\OrderSubmission_model;
+use CodeIgniter\HTTP\IncomingRequest;
 
 
 
@@ -80,4 +81,67 @@ class Employee extends BaseController
     {
         return view("employee_viewTranslation");
     }
+
+    public function translationForm($docID = null){
+        helper(['form', 'url']);
+
+        $rules = [
+            'thefile' => [
+                'uploaded[thefile]',
+                'max_size[thefile,20480]',
+                'ext_in[thefile,pdf,txt]'
+            ]
+        ];
+
+        if ($this->validate($rules)) {
+            $file = $this->request->getFile('thefile');
+
+            $session = \Config\Services::session();
+            $user_id = $session->get('user_id');
+
+            if ($file->isValid() && !$file->hasMoved()) {
+                $filePath = './assets/Docs/' . $file->getName();
+                if ($file->move('./assets/Docs')) {
+                    // Read file content
+                    $fileContent = file_get_contents($filePath);
+                    if ($fileContent !== false) {
+
+                        $file_name = $file->getName();
+                    } else {
+                        log_message('error', 'Failed to read the file content.');
+
+                    }
+                } else {
+                    log_message('error', 'Failed to move the uploaded file.');
+
+                }
+            } else {
+                log_message('error', 'File has already been moved.');
+
+            }
+
+
+            $data = [
+                'Translation_path' => $file_name
+            ];
+            // $docID = $this->request->uri->getSegment(3); // Assuming the document ID is in the third segment of the URL
+
+            $this->OrderSubmit->update($docID, $data);
+            // $this->OrderSubmit->where('Document_id', $docID)->update($data);
+
+            $response = array(
+                'status' => 'success',
+            );
+
+            return $this->response->setJSON($response);
+        } else {
+            // Validation failed, return the errors
+            $response = [
+                'status' => 'error',
+                'validate' => $this->validator->listErrors(),
+            ];
+            return $this->response->setJSON($response);
+        }
+    }
+    
 }
