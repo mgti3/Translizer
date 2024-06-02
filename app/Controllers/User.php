@@ -2,9 +2,12 @@
 
 namespace App\Controllers;
 
+use Config\Database;
+
 use App\Models\usersModel;
 use App\Models\OrderSubmission_model;
 use App\Models\reportSubmission_model;
+use App\Models\teamModel;
 
 class User extends BaseController
 {
@@ -13,11 +16,15 @@ class User extends BaseController
     {
         $this->OrderSubmit = new OrderSubmission_model();
         $this->report_model = new reportSubmission_model();
+        $this->team_model = new teamModel();
     }
 
     public function dashboard(): string
     {
-        return view("user_dashboard");
+
+        $data['teams'] = $this->team_model->findAll();
+
+        return view("user_dashboard", $data);
     }
 
     public function orders(): string
@@ -25,7 +32,18 @@ class User extends BaseController
         $session = \Config\Services::session();
         $user_id = $session->get('user_id');
 
-        $data['orders'] = $this->OrderSubmit->where('User_id', $user_id)->findAll();
+        // $data['orders'] = $this->OrderSubmit->where('User_id', $user_id)->findAll();
+
+        $db = Database::connect();
+
+        // Build the query with a join
+        $builder = $db->table('documents');
+        $builder->select('documents.*, teams.Team_name as team_name');
+        $builder->join('teams', 'documents.Team_id = teams.Tid');
+        $builder->where('documents.User_id', $user_id);
+
+        $query = $builder->get();
+        $data['orders'] = $query->getResultArray();
 
         return view("orders_page", $data);
     }
@@ -133,7 +151,7 @@ class User extends BaseController
             'thefile' => [
                 'uploaded[thefile]',
                 'max_size[thefile,20480]',
-                'ext_in[thefile,doc,docx,pdf,txt]'
+                'ext_in[thefile,pdf,txt]'
             ]
         ];
 
@@ -170,6 +188,7 @@ class User extends BaseController
             $language = $this->request->getPost('documentLanguage');
             $target_language = $this->request->getPost('targetLanguage');
             $urgent = $this->request->getPost('urgent');
+            $team_id = $this->request->getPost('category');
 
             $bool_urgent = false;
             if ($urgent) {
@@ -189,6 +208,7 @@ class User extends BaseController
                 'cost' => $cost,
                 'est_time' => $time,
                 'file_path' => $file_name,
+                'Team_id' => $team_id,
             ];
 
             // Insert data into the submitOrder model

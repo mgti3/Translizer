@@ -15,7 +15,7 @@
         <h3>Name: <span id="username"></span></h3>
         <ul class="statistics-background">
             <li class="statistics-item">
-                <h2  id="total" class="stat-number">0</h2>
+                <h2 id="total" class="stat-number">0</h2>
                 <p class="stat-headers">Orders</p>
             </li>
             <li class="statistics-item">
@@ -36,8 +36,7 @@
     <div class="collapse show" id="collapseCardExample">
         <div class="card-body">
             <div class="container text-left">
-            <div class="text-success" id="success-message"></div>
-            <div class="text-danger" id="errors"></div>
+                <div class="text-danger" id="errors"></div>
                 <form class="user" id="orderSubmit" enctype="multipart/form-data">
 
                     <div class="mb-3">
@@ -51,14 +50,27 @@
                         </select>
                     </div>
 
-                    <label for="targetLanguage" class="ml-0">Target Language:</label>
-                    <select id="targetLanguage" name="targetLanguage" class="form-control form-control-solid">
-                        <option value="Spanish">Spanish</option>
-                        <option value="English">English</option>
-                        <option value="Arabic">Arabic</option>
-                        <option value="French">French</option>
-                        <option value="German">German</option>
-                    </select>
+                    <div class="mb-3">
+                        <label for="targetLanguage" class="ml-0">Target Language:</label>
+                        <select id="targetLanguage" name="targetLanguage" class="form-control form-control-solid">
+                            <option value="Spanish">Spanish</option>
+                            <option value="English">English</option>
+                            <option value="Arabic">Arabic</option>
+                            <option value="French">French</option>
+                            <option value="German">German</option>
+                        </select>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="category" class="ml-0">Category:</label>
+                        <select id="category" name="category" class="form-control form-control-solid">
+                        <?php foreach ($teams as $team): ?>
+                        <option value="<?= $team['Tid'] ?>"><?= $team['Team_name'] ?></option>
+                    <?php endforeach; ?>
+                        </select>
+                    </div>
+
 
                     <label for="file" class="ml-0">Upload Document:</label>
                     <input type="file" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -76,8 +88,28 @@
                         </span>
                         <span class="text">Submit Order</span>
                     </a> -->
-                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-check"></i> Submit Order </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Upload Completed</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    The file was uploaded successfully
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
 
             </div>

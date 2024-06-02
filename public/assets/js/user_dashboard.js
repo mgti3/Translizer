@@ -49,6 +49,46 @@ $(document).ready(function () {
 
     $('#orderSubmit').submit(function (event) {
         event.preventDefault();
+
+        document.getElementById("errors").innerHTML = "";
+
+        // Front-end validation
+        let hasError = false;
+        let errorMessage = "";
+
+        // Example of required field validation
+        let fileInput = document.getElementById('thefile');
+        if (!fileInput || !fileInput.value) {
+            hasError = true;
+            errorMessage += "File is required.<br>";
+        } else {
+            // Check file size (limit to 2MB for example)
+            let maxSize = 2 * 1024 * 1024 * 1024; // 2MB in bytes
+            if (fileInput.files[0].size > maxSize) {
+                hasError = true;
+                errorMessage += "File size must be less than 2MB.<br>";
+            }
+
+            // Check file type (e.g., only allow images)
+            let allowedTypes = ['text/plain', 'application/pdf'];
+            if (!allowedTypes.includes(fileInput.files[0].type)) {
+                hasError = true;
+                errorMessage += "File type must be PDF, or TXT.<br>";
+            }
+        }
+
+        // Example of custom check validation
+        let customCheck = document.getElementById('customCheck');
+        if (!customCheck.checked) {
+            hasError = true;
+            errorMessage += "You must agree to the terms.<br>";
+        }
+
+        // If there are validation errors, display them and stop the submission
+        if (hasError) {
+            document.getElementById("errors").innerHTML = errorMessage;
+            return;
+        }
         let formData = new FormData(this);
         $.ajax({
             url: '/Translizer/public/submit',
@@ -97,13 +137,8 @@ $(document).ready(function () {
                     ur.checked = false;
                     file.value = '';
 
-                    const successMessage = document.getElementById('success-message');
-                    successMessage.textContent = response.status;
-                    successMessage.style.display = 'block';
 
-                    setTimeout(() => {
-                        successMessage.style.display = 'none';
-                    }, 5000); // Adjust the time as needed
+                    $('#exampleModal').modal('show');
                 } else if (response.status === 'error') {
                     document.getElementById("errors").innerHTML = (response.validate);
                 }
@@ -113,11 +148,37 @@ $(document).ready(function () {
             }
         });
 
-
     });
 
     $('#report').submit(function (event) {
         event.preventDefault();
+
+        document.getElementById("errors").innerHTML = "";
+
+        // Front-end validation
+        let hasError = false;
+        let errorMessage = "";
+
+        // Title validation (at least 3 characters)
+        let titleInput = document.getElementById('title');
+        if (!titleInput || titleInput.value.length < 3) {
+            hasError = true;
+            errorMessage += "Title must be at least 3 characters long.<br>";
+        }
+
+        // Description validation (at least 10 characters)
+        let descriptionInput = document.getElementById('description');
+        if (!descriptionInput || descriptionInput.value.length < 10) {
+            hasError = true;
+            errorMessage += "Description must be at least 10 characters long.<br>";
+        }
+
+        // If there are validation errors, display them and stop the submission
+        if (hasError) {
+            document.getElementById("errors").innerHTML = errorMessage;
+            return;
+        }
+        
         let formData = new FormData(this);
         $.ajax({
             url: '/Translizer/public/reportSubmit',
@@ -137,13 +198,7 @@ $(document).ready(function () {
                     desc.value = '';
                     fileId.value = '';
 
-                    const successMessage = document.getElementById('success-message');
-                    successMessage.textContent = response.status;
-                    successMessage.style.display = 'block';
-
-                    setTimeout(() => {
-                        successMessage.style.display = 'none';
-                    }, 5000); // Adjust the time as needed
+                    $('#exampleModal').modal('show');
                 } else if (response.status === 'error') {
                     document.getElementById("errors").innerHTML = (response.validate);
                 }

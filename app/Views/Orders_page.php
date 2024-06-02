@@ -17,6 +17,7 @@
                             <th>Cost</th>
                             <th>Time Estimation</th>
                             <th>State</th>
+                            <th>Team Name</th>
                             <th>Translation</th>
                         </tr>
                     </thead>
@@ -27,6 +28,7 @@
                             <th>Cost</th>
                             <th>Time Estimation</th>
                             <th>State</th>
+                            <th>Team Name</th>
                             <th>Translation</th>
                         </tr>
                     </tfoot>
@@ -38,6 +40,7 @@
                                 <td><?= $order['cost'] ?></td>
                                 <td><?= $order['est_time'] ?></td>
                                 <td><?= $order['state'] ?></td>
+                                <td><?= $order['team_name'] ?></td>
                                 <td><a href="/Translizer/public/user_viewTranslation/<?=$order['Translation_path']?>/<?=$order['Document_id']?>"><?= $order['Translation_path'] ?></a></td>
                             </tr>
                         <?php endforeach; ?>
