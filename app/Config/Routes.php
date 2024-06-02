@@ -44,7 +44,7 @@ $routes->post('signingIn', 'Home::Ulogin');
 $routes->group('', ['filter' => 'auth:0'], function ($routes) {
     $routes->add('admin_dashboard', 'Admin::dashboard');
     $routes->add('admin_employees_management', 'Admin::adminEmployeesManagement');
-    $routes->post('admin_employees_management', 'Admin::addEmployee');
+    $routes->post('addEmployee', 'Admin::addEmployee');
     $routes->add('deleteUser', 'Admin::deleteUser');
     // $routes->post('admin_employees_management', 'Admin::editEmployee');
     $routes->add('admin_team_management', 'Admin::addTeam');
@@ -55,6 +55,7 @@ $routes->group('', ['filter' => 'auth:4'], function ($routes) {
     $routes->add('manager_dashboard', 'Manager::dashboard');
     $routes->add('manager_tickets', 'Manager::ticket');
     $routes->add('manager_assignment', 'Manager::assignment');
+    $routes->add('manager_task_assignment', 'Manager::taskAssignment');
 });
 
 // Employee Routes (assuming employee user type is 3)

@@ -10,7 +10,7 @@
 <div class="container mt-5">
     <div class="form-section">
         <h2>Register New Employee</h2>
-        <form class="user" method="POST" action="<?= base_url('Admin/addEmployee') ?>">
+        <form class="user" id="addEditFromAdmin" method="POST">
             <input type="hidden" name="operation" id="operation" value="add"> <!-- حقل مخفي لتحديد نوع العملية -->
             <input type="hidden" name="user_id" id="user_id"> <!-- حقل مخفي لتخزين معرف المستخدم -->
             <div class="form-row">
@@ -60,6 +60,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mb-4">Submit</button>
+            <div id="errors"></div>
         </form>
     </div>
     <!-- Data Table -->

@@ -72,50 +72,82 @@ class Admin extends BaseController
         $data['managers'] = $managersModel->findAll(); // جلب جميع المدراء
         $data['employees'] = $usersModel->findAll(); // جلب جميع الموظفين
 
-        if ($this->request->getMethod() === 'POST') {
-            $operation = $this->request->getPost('operation');
-            $user_id = $this->request->getPost('user_id');
+        helper(['form', 'url']);
 
-            $userData = [
-                'username' => $this->request->getPost('username'),
-                'email' => $this->request->getPost('email'),
-                'password' => $this->request->getPost('password'),
-                'Role' => $this->request->getPost('Role'),
-                'Team_id' => $this->request->getPost('dep')
+        if ($this->request->getMethod() === 'POST') {
+            $rules = [
+                'email' => 'required|valid_email',
+                'username' => 'required|min_length[3]|max_length[20]',
+                'password' => 'required|min_length[8]',
+                'conPassword' => 'required|matches[password]',
+                'Role' => 'required|in_list[0,1,4]',
+                'dep' => 'required'
             ];
 
-            if ($operation === 'edit' && !empty($user_id)) {
-                // منطق تحديث البيانات إذا كانت عملية تعديل
-                if ($userData['Role'] == 4) {
-                    if ($usersModel->find($user_id)) {
-                        $usersModel->delete($user_id);
-                        $managersModel->insert($userData);
+            if ($this->validate($rules)) {
+                $operation = $this->request->getPost('operation');
+                $user_id = $this->request->getPost('user_id');
+
+                $userData = [
+                    'username' => $this->request->getPost('username'),
+                    'email' => $this->request->getPost('email'),
+                    'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+                    'Role' => $this->request->getPost('Role'),
+                    'Team_id' => $this->request->getPost('dep')
+                ];
+
+                if ($operation === 'edit' && !empty($user_id)) {
+                    // منطق تحديث البيانات إذا كانت عملية تعديل
+                    if ($userData['Role'] == 4) {
+                        if ($usersModel->find($user_id)) {
+                            $usersModel->delete($user_id);
+                            $managersModel->insert($userData);
+                        } else {
+                            $managersModel->update($user_id, $userData);
+                        }
                     } else {
-                        $managersModel->update($user_id, $userData);
+                        if ($managersModel->find($user_id)) {
+                            $managersModel->delete($user_id);
+                            $usersModel->insert($userData);
+                        } else {
+                            $usersModel->update($user_id, $userData);
+                        }
                     }
                 } else {
-                    if ($managersModel->find($user_id)) {
-                        $managersModel->delete($user_id);
-                        $usersModel->insert($userData);
+                    // منطق إضافة بيانات جديدة
+                    if ($userData['Role'] == 4) {
+                        if ($managersModel->insert($userData)) {
+                            return $this->response->setJSON([
+                                'status' => 'success',
+                                'message' => 'Manager added successfully.',
+                                'redirect' => base_url('Admin/employees')
+                            ]);
+                        } else {
+                            return $this->response->setJSON([
+                                'status' => 'error',
+                                'message' => 'Error occurred while adding manager.'
+                            ]);
+                        }
                     } else {
-                        $usersModel->update($user_id, $userData);
+                        if ($usersModel->insert($userData)) {
+                            return $this->response->setJSON([
+                                'status' => 'success',
+                                'message' => 'Employee added successfully.',
+                                'redirect' => 'Translizer/public/admin_employees_management'
+                            ]);
+                        } else {
+                            return $this->response->setJSON([
+                                'status' => 'error',
+                                'message' => 'Error occurred while adding employee.'
+                            ]);
+                        }
                     }
                 }
             } else {
-                // منطق إضافة بيانات جديدة
-                if ($userData['Role'] == 4) {
-                    if ($managersModel->insert($userData)) {
-                        return view('admin_employees_management', $data);
-                    } else {
-                        return "Error occurred while adding manager.";
-                    }
-                } else {
-                    if ($usersModel->insert($userData)) {
-                        return view('admin_employees_management', $data);
-                    } else {
-                        return "Error occurred while adding employee.";
-                    }
-                }
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'validate' => $this->validator->listErrors()
+                ]);
             }
         }
 
@@ -213,4 +245,3 @@ class Admin extends BaseController
 
 
  
-
