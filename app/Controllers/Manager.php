@@ -20,21 +20,29 @@ class Manager extends BaseController
 
     public function assignment()
     {
-        $documentsModel = new OrderSubmission_model();
-        $documents = $documentsModel->where('employee_id', null)->findAll();
-
+        
         $session = session();
         $managerId = $session->get('user_id');
 
         $managerModel = new managersModel();
         $teamId = $managerModel->where('manager_id', $managerId)->first()['Team_id'];
 
+        $documentsModel = new OrderSubmission_model();
+        $documents = $documentsModel->where('employee_id', null)->where('Team_id', $teamId)->findAll();
+        $documentsinfo = $documentsModel
+        ->select('documents.*, users.username as employee_name')
+        ->join('users', 'users.User_id = documents.employee_id', 'inner')
+        ->where('documents.Team_id', $teamId)
+        ->where('documents.employee_id IS NOT NULL')
+        ->findAll();
+
         $userModel = new usersModel();
         $employees = $userModel->where('Team_id', $teamId)->findAll();
 
         $data = [
             'documents' => $documents,
-            'employees' => $employees
+            'employees' => $employees,
+            'documentsinfo' => $documentsinfo
         ];
 
 

@@ -11,12 +11,3 @@ class usersModel extends Model
 }
 
 ?>
-
-<!-- 
-    User_id: primary key auto increment 
-username: varchar 
-password: varchar 
-email: varchar 
-Role: int 
-Team_id: Forgin key from teams table 
- -->
