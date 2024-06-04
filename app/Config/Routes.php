@@ -53,6 +53,9 @@ $routes->group('', ['filter' => 'auth:4'], function ($routes) {
     $routes->add('manager_dashboard', 'Manager::dashboard');
     $routes->add('manager_tickets', 'Manager::ticket');
     $routes->add('manager_assignment', 'Manager::assignment');
+    $routes->add('manager_ticketDetails/(:any)', 'Manager::ticketDetails/$1');
+    $routes->add('load_tickets', 'Manager::load_tikcets');
+    $routes->add('close_ticket', 'Manager::close_ticket');
 });
 
 // Employee Routes (assuming employee user type is 3)
