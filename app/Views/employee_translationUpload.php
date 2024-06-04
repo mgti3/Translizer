@@ -46,6 +46,7 @@
                     <div class="mb-3">
                         <label for="documentUpload" class="form-label">Choose document to upload</label>
                         <input class="form-control" type="file" id="documentUpload" name="thefile">
+                        <input name="docID" class = "form-control" type = "text" value = "<?=$docID?>" hidden >
                     </div>
                     <div class="mb-4">
                         <h4>Translation Details</h4>
@@ -56,7 +57,6 @@
                 </form>
             </div>
 
-            <!-- Document Details Section -->
 
 
 

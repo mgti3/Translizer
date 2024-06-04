@@ -72,9 +72,10 @@ class Employee extends BaseController
         return view("employee_viewDoc");
     }
 
-    public function employee_translationUpload(): string
+    public function employee_translationUpload($docID ): string
     {
-        return view("employee_translationUpload");
+        $data['docID'] = $docID;
+        return view("employee_translationUpload", $data);
     }
 
     public function employee_viewTranslation(): string 
@@ -82,7 +83,7 @@ class Employee extends BaseController
         return view("employee_viewTranslation");
     }
 
-    public function translationForm($docID = null){
+    public function translationForm(){
         helper(['form', 'url']);
 
         $rules = [
@@ -120,18 +121,29 @@ class Employee extends BaseController
 
             }
 
+            
 
             $data = [
                 'Translation_path' => $file_name
             ];
-            // $docID = $this->request->uri->getSegment(3); // Assuming the document ID is in the third segment of the URL
+            //$docID = $this->request->uri->getSegment(3); // Assuming the document ID is in the third segment of the URL
 
-            $this->OrderSubmit->update($docID, $data);
+            // $this->OrderSubmit->update($docID, $data);
             // $this->OrderSubmit->where('Document_id', $docID)->update($data);
-
-            $response = array(
-                'status' => 'success',
-            );
+            $docID = $this->request->getPost('docID');
+            if($this->OrderSubmit->set($data)->where('Document_id',$docID)->update())
+            {
+                $response = array(
+                    'status' => 'success',
+                    'id' => $docID,
+                );
+            }
+            else{
+                $response = array(
+                    'status' => 'failed db entery',
+                );
+            }
+            
 
             return $this->response->setJSON($response);
         } else {
