@@ -10,7 +10,41 @@ class Manager extends BaseController
 {
     public function dashboard(): string
     {
-        return view("manager_dashboard");
+        $session = session();
+        $managerId = $session->get('user_id');
+
+        $managerModel = new managersModel();
+        $teamId = $managerModel->where('manager_id', $managerId)->first()['Team_id'];
+
+        $documentsModel = new OrderSubmission_model();
+        $userModel = new usersModel();
+
+        // جلب الموظفين في نفس الفريق
+        $employees = $userModel->where('Team_id', $teamId)->findAll();
+
+        $progressData = [];
+
+        foreach ($employees as $employee) {
+            $userId = $employee['User_id'];
+
+            // عدد المهام المستلمة
+            $tasksReceived = $documentsModel->where('employee_id', $userId)->countAllResults();
+
+            // عدد المهام المكتملة
+            $tasksCompleted = $documentsModel->where('employee_id', $userId)->where('state !=', 'Pending')->countAllResults();
+
+            $progressData[] = [
+                'username' => $employee['username'],
+                'tasks_received' => $tasksReceived,
+                'tasks_completed' => $tasksCompleted,
+                'tickets' => '' // العمود الأخير يترك فارغًا
+            ];
+        }
+
+        $data = [
+            'progressData' => $progressData
+        ];
+        return view("manager_dashboard", $data);
     }
 
     public function ticket(): string
