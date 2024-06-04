@@ -20,6 +20,27 @@
     <!-- Custom styles for this template-->
     <link href="/Translizer/public/assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/Translizer/public/assets/css/styleiba.css">
+    <style>
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: -350px; /* Start off-screen */
+            z-index: 1050;
+            transition: right 0.5s ease-in-out;
+        }
+
+        .toast-container.show {
+            right: 20px; /* Slide in to this position */
+        }
+
+        .toast-header {
+            font-size: 20px;
+        }
+
+        .toast-body {
+            font-size: 16px;
+        }
+    </style>
     
 </head>
 
@@ -437,6 +458,8 @@
 
     <!-- Page level custom scripts -->
     <script src="/Translizer/public/assets/js/demo/datatables-demo.js"></script>
+    <script src="/Translizer/public/assets/js/translationForm_ajax.js"></script>
+
 
 
 </body>

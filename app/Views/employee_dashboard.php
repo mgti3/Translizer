@@ -102,7 +102,7 @@
                         3567 Words
                     </p>
                     <a href="/Translizer/public/employee_orderDetails/<?=$order['file_path']?>/<?=$order['Document_id']?>/<?=$order['upload_date']?>" class="btn view my-1">View Order Details</a>
-                    <a href="employee_translationUpload" class="btn mark my-1">Upload Translation</a>
+                    <a href="employee_translationUpload/<?=$order['Document_id']?>" class="btn mark my-1">Upload Translation</a>
                 </div>
                 <div class="card-footer text-muted">
                     Order Status: <?=$order['state']?>

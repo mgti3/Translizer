@@ -64,8 +64,9 @@ $routes->group('', ['filter' => 'auth:1'], function ($routes) {
     $routes->add('employee_orderHistory', 'Employee::orderHistory');
     $routes->add('employee_orderDetails/(:any)/(:any)/(:any)', 'Employee::orderDetails/$1/$2/$3');
     $routes->add('employee_viewDoc', 'Employee::viewDoc');
-    $routes->add('employee_translationUpload', 'Employee::employee_translationUpload');
+    $routes->add('employee_translationUpload/(:any)', 'Employee::employee_translationUpload/$1');
     $routes->add('employee_viewTranslation', 'Employee::employee_viewTranslation');
+    $routes->post('translationSubmit', 'Employee::translationForm');
 });
 
 // User Routes (assuming general user type is 4)
