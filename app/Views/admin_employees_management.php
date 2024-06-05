@@ -10,7 +10,9 @@
 <div class="container mt-5">
     <div class="form-section">
         <h2>Register New Employee</h2>
-        <form class="user" method="POST" action="Admin/addEmployee">
+        <form class="user" id="addEditFromAdmin" method="POST">
+            <input type="hidden" name="operation" id="operation" value="add"> <!-- حقل مخفي لتحديد نوع العملية -->
+            <input type="hidden" name="user_id" id="user_id"> <!-- حقل مخفي لتخزين معرف المستخدم -->
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Name</label>
@@ -30,7 +32,7 @@
                         <option value="" disabled selected>Select department</option>
                         <?php foreach ($departments as $dep): ?>
                         <option value="<?= $dep['Tid'] ?>"><?= $dep['Team_name'] ?></option>
-                        <?php endforeach; ?>
+                        <?php endforeach ?>
                     </select>
                 </div>
 
@@ -39,11 +41,10 @@
                     <select name="Role" class="form-control" id="position" required>
                         <option value="" disabled selected>Select position</option>
                         <option value="0">Admin</option>
-                        <option value="1">Manager</option>
-                        <option value="2">Employee</option>
+                        <option value="4">Manager</option>
+                        <option value="1">Employee</option>
                     </select>
                 </div>
-
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -59,9 +60,9 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mb-4">Submit</button>
+            <div id="errors"></div>
         </form>
     </div>
-
     <!-- Data Table -->
     <h2>Information Employees</h2>
     <div class="card shadow mb-4">
@@ -112,10 +113,10 @@
                                         <a href="#" class="dropdown-item edit-btn"
                                             data-id="<?= $manager['manager_id'] ?>"
                                             data-name="<?= $manager['username'] ?>"
-                                            data-email="<?= $manager['email'] ?>" data-position="Manager"
+                                            data-email="<?= $manager['email'] ?>" data-position="1"
                                             data-team="<?= $manager['Team_id'] ?>"
-                                            data-manager="<?= $manager['username'] ?>">
-                                            <i class="fas fa-edit"></i> Edit
+                                            data-manager="<?= $manager['username'] ?>">/ <i class="fas fa-edit"></i>
+                                            Edit
                                         </a>
                                         <a href="#" class="dropdown-item delete-btn"
                                             data-id="<?= $manager['manager_id'] ?>">
@@ -130,10 +131,10 @@
                         <td><?= $employee['User_id'] ?></td>
                         <td><?= $employee['username'] ?></td>
                         <td><?= $employee['email'] ?></td>
-                        <td><?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 2) ? 'Employee' : 'User') ?>
+                        <td><?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 1) ? 'Employee' : 'User') ?>
                         </td>
                         <td><?= $employee['Team_id'] ?></td>
-                        <td><?= $employee['manager_name'] ?></td> <!-- Added manager's name here -->
+                        <td><?= $employee['username'] ?></td> <!-- Added manager's name here -->
                         <td>
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -142,12 +143,13 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="#" class="dropdown-item edit-btn" data-id="<?= $employee['User_id'] ?>"
                                         data-name="<?= $employee['username'] ?>" data-email="<?= $employee['email'] ?>"
-                                        data-position="<?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 2) ? 'Employee' : 'User') ?>"
-                                        data-team="<?= $employee['Team_id'] ?>"
-                                        data-manager="<?= ($employee['Role'] == 1) ? 'Admin' : (($employee['Role'] == 2) ? 'Manager' : 'Employee') ?>">
+                                        data-position="<?= $employee['Role'] ?>" data-team="<?= $employee['Team_id'] ?>"
+                                        data-manager="<?= $employee['username'] ?>">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <a href="#" class="dropdown-item delete-btn" data-id="<?= $employee['User_id'] ?>">
+                                    <a href="<?= base_url('Admin/deleteUser/'.$employee['User_id']) ?>"
+                                        class="dropdown-item delete-btn"
+                                        onclick="return confirm('Are you sure you want to delete this user?');">
                                         <i class="fas fa-trash"></i> Delete
                                     </a>
                                 </div>
@@ -159,12 +161,30 @@
                 </table>
             </div>
         </div>
-
-
-
-        >
     </div>
 </div>
 
+<!-- Confirmation Modal -->
+<!-- <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
+    aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteMessage">Are you sure to delete this user from the database?</p>
+                <p>Note: When you click on the "Confirm" button, its data will be lost forever.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div> -->
 
 <?= $this->endSection() ?>

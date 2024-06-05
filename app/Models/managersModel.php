@@ -11,3 +11,8 @@ class managersModel extends Model
 }
 ?>
 
+<!-- manager_id: primary key and auto increment 
+Team_id: forign key from teams table 
+username: varchar 
+password: varchar 
+email: varchar  -->

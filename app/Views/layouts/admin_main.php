@@ -8,17 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="./assets/img/logo-alternative.png" rel="icon">
+    <link href="/Translizer/public/assets/img/logo-alternative.png" rel="icon">
     <title>Translizer</title>
 
     <!-- Custom fonts for this template-->
-    <link href="./assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/Translizer/public/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/Translizer/public/assets/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -33,7 +33,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin_dashboard">
                 <div>
-                    <img src="./assets/img/logo.png"
+                    <img src=<?= base_url('assets/img/logo.png') ?>
                         style="height: auto; width: 70px; margin-top:10px; margin-bottom:10px;" alt="">
                 </div>
                 <div class="sidebar-brand-text mx-3">Translizer</div>
@@ -44,7 +44,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="admin_dashboard">
+                <a class="nav-link" href=<?= base_url('admin_dashboard') ?>>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -59,7 +59,7 @@
 
             <!-- Nav Item - Employees -->
             <li class="nav-item">
-                <a class="nav-link" href="admin_employees_management">
+                <a class="nav-link" href=<?= base_url('admin_employees_management') ?>>
                     <i class="fas fa-fw fa-user-tie"></i>
                     <span>Employees Management</span>
                 </a>
@@ -67,7 +67,7 @@
 
             <!-- Nav Item - Teams -->
             <li class="nav-item">
-                <a class="nav-link" href="admin_team_management">
+                <a class="nav-link" href=<?= base_url('admin_team_management') ?>>
                     <i class="fas fa-fw fa-users"></i>
                     <span>Team Management</span>
                 </a>
@@ -264,7 +264,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="./assets/img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="<?= base_url('./assets/img/undraw_profile.svg') ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -350,26 +350,28 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="./assets/vendor/jquery/jquery.min.js"></script>
-    <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/Translizer/public/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/Translizer/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="./assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/Translizer/public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <script src="./assets/vendor/chart.js/Chart.js"></script>
+    <script src="/Translizer/public/assets/vendor/chart.js/Chart.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="./assets/js/sb-admin-2.min.js"></script>
-    <script src="./assets/js/demo/chart-pie-demo.js"></script>
-    <script src="./assets/js/demo/chart-bar-demo.js"></script>
-    <script src="./assets/js/demo/chart-area-demo.js"></script>
+    <script src="/Translizer/public/assets/js/sb-admin-2.min.js"></script>
+    <script src="/Translizer/public/assets/js/demo/chart-pie-demo.js"></script>
+    <script src="/Translizer/public/assets/js/demo/chart-bar-demo.js"></script>
+    <script src="/Translizer/public/assets/js/demo/chart-area-demo.js"></script>
 
     <!-- Page level plugins -->
-    <script src="./assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="./assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/Translizer/public/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/Translizer/public/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="./assets/js/demo/datatables-demo.js"></script>
+    <script src="/Translizer/public/assets/js/demo/datatables-demo.js"></script>
+    <script src="/Translizer/public/assets/js/editEmployee.js"></script>
+    <script src="/Translizer/public/assets/js/deleteEmployee.js"></script>
 
 </body>
 

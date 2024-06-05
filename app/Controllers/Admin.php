@@ -59,44 +59,101 @@ class Admin extends BaseController
         }
 
 
-        return view("admin_employees_management", $data);
+    return view("admin_employees_management", $data);
     }
+
+
     public function addEmployee()
     {
         $teamModel = new teamModel();
+        $managersModel = new managersModel();
+        $usersModel = new usersModel();
         $data['departments'] = $teamModel->findAll();
+        $data['managers'] = $managersModel->findAll(); // جلب جميع المدراء
+        $data['employees'] = $usersModel->findAll(); // جلب جميع الموظفين
+
+        helper(['form', 'url']);
 
         if ($this->request->getMethod() === 'POST') {
-            $userData = [
-                'username' => $this->request->getPost('username'),
-                'email' => $this->request->getPost('email'),
-                'password' => $this->request->getPost('password'),
-                'Role' => $this->request->getPost('Role'),
-                'Team_id' => $this->request->getPost('dep')
+            $rules = [
+                'email' => 'required|valid_email',
+                'username' => 'required|min_length[3]|max_length[20]',
+                'password' => 'required|min_length[8]',
+                'conPassword' => 'required|matches[password]',
+                'Role' => 'required|in_list[0,1,4]',
+                'dep' => 'required'
             ];
 
-            // Check Role value
-            if ($userData['Role'] == 1) {
-                // If Role is 1 (Manager), insert data into managers table
-                $managersModel = new managersModel();
-                if ($managersModel->insert($userData)) {
-                    return redirect()->to('http://localhost/Translizer/public/admin_employees_management');
+            if ($this->validate($rules)) {
+                $operation = $this->request->getPost('operation');
+                $user_id = $this->request->getPost('user_id');
+
+                $userData = [
+                    'username' => $this->request->getPost('username'),
+                    'email' => $this->request->getPost('email'),
+                    'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+                    'Role' => $this->request->getPost('Role'),
+                    'Team_id' => $this->request->getPost('dep')
+                ];
+
+                if ($operation === 'edit' && !empty($user_id)) {
+                    // منطق تحديث البيانات إذا كانت عملية تعديل
+                    if ($userData['Role'] == 4) {
+                        if ($usersModel->find($user_id)) {
+                            $usersModel->delete($user_id);
+                            $managersModel->insert($userData);
+                        } else {
+                            $managersModel->update($user_id, $userData);
+                        }
+                    } else {
+                        if ($managersModel->find($user_id)) {
+                            $managersModel->delete($user_id);
+                            $usersModel->insert($userData);
+                        } else {
+                            $usersModel->update($user_id, $userData);
+                        }
+                    }
                 } else {
-                    return "Error occurred while adding manager.";
+                    // منطق إضافة بيانات جديدة
+                    if ($userData['Role'] == 4) {
+                        if ($managersModel->insert($userData)) {
+                            return $this->response->setJSON([
+                                'status' => 'success',
+                                'message' => 'Manager added successfully.',
+                                'redirect' => base_url('Admin/employees')
+                            ]);
+                        } else {
+                            return $this->response->setJSON([
+                                'status' => 'error',
+                                'message' => 'Error occurred while adding manager.'
+                            ]);
+                        }
+                    } else {
+                        if ($usersModel->insert($userData)) {
+                            return $this->response->setJSON([
+                                'status' => 'success',
+                                'message' => 'Employee added successfully.',
+                                'redirect' => 'Translizer/public/admin_employees_management'
+                            ]);
+                        } else {
+                            return $this->response->setJSON([
+                                'status' => 'error',
+                                'message' => 'Error occurred while adding employee.'
+                            ]);
+                        }
+                    }
                 }
             } else {
-                // If Role is not 1 (Admin or Employee), insert data into users table
-                $usersModel = new usersModel();
-                if ($usersModel->insert($userData)) {
-                    return redirect()->to('http://localhost/Translizer/public/admin_employees_management');
-                } else {
-                    return "Error occurred while adding employee.";
-                }
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'validate' => $this->validator->listErrors()
+                ]);
             }
         }
 
         return view('admin_employees_management', $data);
     }
+
 
     public function __construct()
     {
@@ -105,8 +162,11 @@ class Admin extends BaseController
 
     public function addTeam()
     {
+        $teamModel = new teamModel();
         $userModel = new usersModel();
-        $data['teams'] = $this->teamModel->findAll();
+        $managersModel = new managersModel();
+
+        $data['teams'] = $teamModel->findAll();
 
         // Load helper functions for form and URL handling
         helper(['form', 'url']);
@@ -122,13 +182,12 @@ class Admin extends BaseController
             ];
 
             // Insert data into the teams table
-            $this->teamModel->insert($addTeam);
+            $teamModel->insert($addTeam);
 
             // Redirect to a success page or login page
-            return redirect()->to('http://localhost/Translizer/public/admin_team_management')->with('success', 'Team added successfully.');
+            return redirect()->to(base_url('admin_team_management'))->with('success', 'Team added successfully.');
         }
 
-        $managersModel = new managersModel();
         $data['managers'] = [];
         foreach ($data['teams'] as $team) {
             $managerName = $managersModel->where('Team_id', $team['Tid'])->first();
@@ -141,38 +200,48 @@ class Admin extends BaseController
 
         $data['employees'] = [];
         foreach ($data['teams'] as $team) {
-            $employees = $userModel->where('Role', 2)->where('Team_id', $team['Tid'])->findAll();
+            $employees = $userModel->where('Role', 1)->where('Team_id', $team['Tid'])->findAll();
             $data['employees'][$team['Tid']] = $employees;
         }
 
         return view('admin_team_management', $data);
     }
-    // public function addTeam()
-// {
-//     $userModel = new usersModel();
-//     $data['teams'] = $this->teamModel->findAll();
-
-    //     // Load helper functions for form and URL handling
-//     helper(['form', 'url']);
-
-    //     // Create an instance of the managers model
-//     $managersModel = new managersModel();
-//     $data['managers'] = [];
-//     foreach ($data['teams'] as $team) {
-//         $managerName = $managersModel->where('Team_id', $team['Tid'])->first();
-//         if ($managerName) {
-//             $data['managers'][$team['Tid']] = $managerName['username'];
-//         } else {
-//             $data['managers'][$team['Tid']] = null;
-//         }
-//     }
-
-    //     // جلب الموظفين الذين لديهم الـRole المساوي للـ1
-//     $employeesModel = new usersModel();
-//     $data['employees'] = $employeesModel->where('Role', 1)->findAll();
-
-    //     return view('admin_team_management', $data);
-// }
 
 
+
+    public function deleteUser($userId)
+    {
+        // Check if user is logged in and has appropriate permissions
+        // You can implement your authentication and authorization logic here
+
+        // Load necessary models
+        $userModel = new usersModel();
+        $managerModel = new managersModel();
+
+        // Check if the user exists in the users table
+        $user = $userModel->find($userId);
+        if ($user) {
+            // Delete the user
+            $userModel->delete($userId);
+            // Redirect to appropriate page after deletion
+            return redirect()->to(base_url('admin_employees_management'))->with('success', 'User deleted successfully.');
+        }
+
+        // Check if the user exists in the managers table
+        $manager = $managerModel->find($userId);
+        if ($manager) {
+            // Delete the manager
+            $managerModel->delete($userId);
+            // Redirect to appropriate page after deletion
+            return redirect()->to(base_url('admin_employees_management'))->with('success', 'Manager deleted successfully.');
+        }
+
+        // If user doesn't exist in either tables, redirect with error
+        return redirect()->to(base_url('admin_employees_management'))->with('error', 'User or Manager not found.');
+    }
 }
+
+
+
+
+ 

@@ -11,3 +11,5 @@ class teamModel extends Model
 }
 ?>
 
+<!-- Tid: primary key auto increment 
+Team_name: varchar  -->
