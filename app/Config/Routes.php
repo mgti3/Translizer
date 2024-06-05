@@ -44,9 +44,9 @@ $routes->post('signingIn', 'Home::Ulogin');
 $routes->group('', ['filter' => 'auth:0'], function ($routes) {
     $routes->add('admin_dashboard', 'Admin::dashboard');
     $routes->add('admin_employees_management', 'Admin::adminEmployeesManagement');
+    $routes->post('admin_employees_management', 'Admin::addEmployee');
     $routes->post('addEmployee', 'Admin::addEmployee');
     $routes->add('deleteUser', 'Admin::deleteUser');
-    // $routes->post('admin_employees_management', 'Admin::editEmployee');
     $routes->add('admin_team_management', 'Admin::addTeam');
 });
 
