@@ -173,23 +173,6 @@ class Manager extends BaseController
         }
          return redirect()->to(base_url('manager_assignment'))->with('success', 'Team added successfully.');
     }
-
-    public function taskAssignment()
-    {
-        $documentsModel = new OrderSubmission_model();
-        if ($this->request->getMethod() === 'POST') {
-            $taskName = $this->request->getPost('taskName');
-            $assignedTo = $this->request->getPost('assignedTo');
-    
-            if (is_numeric($taskName)) {
-                $documentsModel->update($taskName, ['employee_id' => $assignedTo]);
-                return redirect()->to(base_url('manager_assignment'))->with('message', 'Task assigned successfully.');
-            } else {
-                return redirect()->back()->with('error', 'Task Name must content just a number.');
-            }
-        }
-         return redirect()->to(base_url('manager_assignment'))->with('success', 'Team added successfully.');
-    }
     
 
     public function ticketDetails($ticket_id)
