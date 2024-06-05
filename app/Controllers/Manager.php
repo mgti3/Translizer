@@ -7,6 +7,7 @@ use App\Models\OrderSubmission_model;
 use App\Models\reportSubmission_model;
 use App\Models\teamModel;
 use App\Models\managersModel;
+use App\Models\usersModel;
 
 class Manager extends BaseController
 {
