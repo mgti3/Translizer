@@ -7,7 +7,7 @@
     <h1 class="h3 mb-0 text-gray-800">Employee Management</h1>
 </div>
 
-<div class="container mt-5">
+<div class="container-fluid mt-5">
     <div class="form-section">
         <h2>Register New Employee</h2>
         <form class="user" id="addEditFromAdmin" method="POST">

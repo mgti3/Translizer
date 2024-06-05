@@ -173,6 +173,7 @@ class Manager extends BaseController
         }
          return redirect()->to(base_url('manager_assignment'))->with('success', 'Team added successfully.');
     }
+    
 
     public function ticketDetails($ticket_id)
     {
