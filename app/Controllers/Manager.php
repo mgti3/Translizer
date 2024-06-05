@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Controllers;
+
+use Config\Database;
 use App\Models\OrderSubmission_model;
-use App\Models\usersModel;
+use App\Models\reportSubmission_model;
 use App\Models\teamModel;
 use App\Models\managersModel;
+use App\Models\usersModel;
 
 class Manager extends BaseController
 {
@@ -47,9 +50,80 @@ class Manager extends BaseController
         return view("manager_dashboard", $data);
     }
 
+    public function __construct()
+    {
+        $this->OrderSubmit = new OrderSubmission_model();
+        $this->report_model = new reportSubmission_model();
+    }
+
     public function ticket(): string
     {
         return view("manager_tickets");
+    }
+
+    public function load_tikcets()
+    {
+        $session = \Config\Services::session();
+        $user_id = $session->get('user_id');
+
+        $db = Database::connect();
+
+        // Build the query with joins
+        $builder = $db->table('reports');
+        $builder->select('reports.*, documents.*, teams.Team_name as team_name, managers.username as manager_name, users.username as username, documents.urgent as urgent, documents.cost as wordlen, documents.language as language, documents.target_language as language');
+        $builder->join('documents', 'reports.Translation_id = documents.Document_id');
+        $builder->join('teams', 'documents.Team_id = teams.Tid');
+        $builder->join('users', 'reports.user_id = users.User_id');
+        $builder->join('managers', 'teams.Tid = managers.Team_id');
+        $builder->where('reports.status', 'Open');
+        $builder->where('managers.manager_id', $user_id);
+        $query = $builder->get();
+
+        $data['reports'] = $query->getResultArray();
+
+        $response = array(
+            'status' => 'success',
+            'data' => $data,
+        );
+
+        return $this->response->setJSON($response);
+    }
+
+    public function close_ticket()
+    {
+        $session = \Config\Services::session();
+        $user_id = $session->get('user_id');
+
+        // Access specific data using key names
+        $index = $this->request->getPost('index');
+
+        $updatedata = [
+            'status' => 'Closed',
+        ];
+
+        $this->report_model->update($index, $updatedata);
+
+        $db = Database::connect();
+
+        // Build the query with joins
+        $builder = $db->table('reports');
+        $builder->select('reports.*, documents.*, teams.Team_name as team_name, managers.username as manager_name, users.username as username, documents.urgent as urgent, documents.cost as wordlen, documents.language as language, documents.target_language as language');
+        $builder->join('documents', 'reports.Translation_id = documents.Document_id');
+        $builder->join('teams', 'documents.Team_id = teams.Tid');
+        $builder->join('users', 'reports.user_id = users.User_id');
+        $builder->join('managers', 'teams.Tid = managers.Team_id');
+        $builder->where('reports.status', 'Open');
+        $builder->where('managers.manager_id', $user_id);
+        $query = $builder->get();
+
+        $data['reports'] = $query->getResultArray();
+
+        $response = array(
+            'status' => 'success',
+            'data' => $data,
+        );
+
+        return $this->response->setJSON($response);
     }
 
     public function assignment()
@@ -99,40 +173,15 @@ class Manager extends BaseController
         }
          return redirect()->to(base_url('manager_assignment'))->with('success', 'Team added successfully.');
     }
-    
 
-    public function clicked()
+    public function ticketDetails($ticket_id)
     {
-        $data = array(
-            'list' => 10
-        );
-        echo json_encode($data);
+
+        $data['ticket_id'] = $ticket_id;
+
+        $data['report'] = $this->report_model->where('Report_id', $ticket_id)->findAll();
+        $data['document'] = $this->OrderSubmit->where('Document_id', $data['report'][0]["Translation_id"])->findAll();
+
+        return view("manager_ticketDetails", $data);
     }
-
 }
-
-// $session = session();
-//         $managerId = $session->get('user_id'); // استخدام user_id بدلاً من manager_id كما في سؤالك
-//         var_dump($managerId);
-//         $managerModel = new managersModel();
-//         $manager = $managerModel->where('manager_id', $managerId)->first();
-
-//         if ($manager) {
-//             $teamId = $manager['Team_id'];
-
-//             $usersModel = new usersModel();
-//             $employees = $usersModel->where('Team_id', $teamId)->findAll();
-
-//             $documentsModel = new OrderSubmission_model();
-//             $documents = $documentsModel->where('employee_id', null)->findAll();
-
-//             $data = [
-//                 'documents' => $documents,
-//                 'employees' => $employees
-//             ];
-
-//             return view('task_assignment', $data);
-//         } else {
-//             // تعامل مع الحالة التي لا يوجد فيها مدير بهذا المعرف
-//             return redirect()->to('Translizer/public/manager_assignment')->with('error', 'Manager not found');
-//         }

@@ -44,9 +44,9 @@ $routes->post('signingIn', 'Home::Ulogin');
 $routes->group('', ['filter' => 'auth:0'], function ($routes) {
     $routes->add('admin_dashboard', 'Admin::dashboard');
     $routes->add('admin_employees_management', 'Admin::adminEmployeesManagement');
+    $routes->post('admin_employees_management', 'Admin::addEmployee');
     $routes->post('addEmployee', 'Admin::addEmployee');
     $routes->add('deleteUser', 'Admin::deleteUser');
-    // $routes->post('admin_employees_management', 'Admin::editEmployee');
     $routes->add('admin_team_management', 'Admin::addTeam');
 });
 
@@ -55,17 +55,20 @@ $routes->group('', ['filter' => 'auth:4'], function ($routes) {
     $routes->add('manager_dashboard', 'Manager::dashboard');
     $routes->add('manager_tickets', 'Manager::ticket');
     $routes->add('manager_assignment', 'Manager::assignment');
-    $routes->add('manager_task_assignment', 'Manager::taskAssignment');
+    $routes->add('manager_ticketDetails/(:any)', 'Manager::ticketDetails/$1');
+    $routes->add('load_tickets', 'Manager::load_tikcets');
+    $routes->add('close_ticket', 'Manager::close_ticket');
 });
 
 // Employee Routes (assuming employee user type is 3)
 $routes->group('', ['filter' => 'auth:1'], function ($routes) {
     $routes->add('employee_dashboard', 'Employee::dashboard');
     $routes->add('employee_orderHistory', 'Employee::orderHistory');
-    $routes->add('employee_orderDetails', 'Employee::orderDetails');
+    $routes->add('employee_orderDetails/(:any)/(:any)/(:any)', 'Employee::orderDetails/$1/$2/$3');
     $routes->add('employee_viewDoc', 'Employee::viewDoc');
-    $routes->add('employee_translationUpload', 'Employee::employee_translationUpload');
+    $routes->add('employee_translationUpload/(:any)', 'Employee::employee_translationUpload/$1');
     $routes->add('employee_viewTranslation', 'Employee::employee_viewTranslation');
+    $routes->post('translationSubmit', 'Employee::translationForm');
 });
 
 // User Routes (assuming general user type is 4)

@@ -12,7 +12,7 @@
         <div class="card-header">
             <form id="taskForm" action="<?= base_url('Manager/taskAssignment') ?>" method="POST" onsubmit="return validateForm()" class="form-inline">
                 <div class="form-group mr-2">
-                    <label for="taskName" class="mr-2">Task Name</label>
+                    <label for="taskName" class="ml-0 mr-2">Task Name</label>
                     <input type="text" class="form-control" id="taskName" name="taskName" onkeyup="filterTasks()" required>
                 </div>
                 <div class="form-group mr-2">

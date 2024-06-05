@@ -7,6 +7,8 @@
         <h6 class="m-0 font-weight-bold text-primary">Report a problem</h6>
     </div>
     <div class="card-body">
+        <div class="text-danger" id="errors"></div>
+        <div class="text-success" id="success-message" style="font-size= 1.2rem;"></div>
         <form id="report">
             <div class="mb-3"><label for="exampleFormControlInput1" class="ml-0">Title</label><input
                     class="form-control" id="title" name="title" type="text" placeholder="Wrong Translation...">
@@ -33,6 +35,25 @@
             <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-3 ml-1"><i
                     class="fas fa-check"></i>
                 Submit Report</button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Report Submitted and in review</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            your report will be reviewed by the team manager, and solved shortly.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
         </form>
 
 
