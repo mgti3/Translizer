@@ -5,6 +5,7 @@ use App\Models\addEmployeeModel;
 use App\Models\usersModel;
 use App\Models\teamModel;
 use App\Models\managersModel;
+use App\Models\OrderSubmission_model;
 
 
 class Admin extends BaseController
@@ -13,6 +14,8 @@ class Admin extends BaseController
     {
         $usersModel = new usersModel();
         $managersModel = new managersModel();
+        $teamModel = new teamModel();
+        $documentModel = new OrderSubmission_model();
 
         // جمع عدد الموظفين من جدول users
         $employeesCount = $usersModel->countAll();
@@ -23,9 +26,83 @@ class Admin extends BaseController
         // مجموع عدد الموظفين والمديرين
         $totalEmployeesCount = $employeesCount + $managersCount;
 
-        // إرسال النتيجة إلى الفيو
-        return view("admin_dashboard", ['totalEmployeesCount' => $totalEmployeesCount]);
+        // جمع بيانات الفرق وتقدمها
+        $teams = $teamModel->findAll();
+        $teamProgress = [];
+
+        foreach ($teams as $team) {
+            $teamId = $team['Tid'];
+            $totalDocs = $documentModel->where('Team_id', $teamId)->countAllResults();
+            $completedDocs = $documentModel->where(['Team_id' => $teamId, 'state !=' => 'Pending'])->countAllResults();
+
+            $progress = $totalDocs > 0 ? ($completedDocs / $totalDocs) * 100 : 0;
+            $teamProgress[] = [
+                'name' => $team['Team_name'],
+                'progress' => $progress,
+                'totalDocs' => $totalDocs
+            ];
+        }
+
+        // حساب النسب الإجمالية لكل فريق
+        $totalDocuments = $documentModel->countAllResults();
+        $teamDocumentPercentages = [];
+        foreach ($teamProgress as $team) {
+            $percentage = $totalDocuments > 0 ? ($team['totalDocs'] / $totalDocuments) * 100 : 0;
+            $teamDocumentPercentages[] = [
+                'name' => $team['name'],
+                'percentage' => $percentage
+            ];
+        }
+
+        // حساب الإيرادات الشهرية بناءً على العمود cost في الشهر الحالي
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+        $monthlyEarnings = $documentModel->selectSum('cost')
+            ->where('MONTH(upload_date)', $currentMonth)
+            ->where('YEAR(upload_date)', $currentYear)
+            ->get()
+            ->getRow()
+            ->cost;
+
+        $inProgressTasks = $documentModel->where('state', 'Pending')->countAllResults();
+        $completedTasks = $documentModel->countAllResults() - $inProgressTasks;
+        $completedTasksPercentage = ($completedTasks / $totalDocuments) * 100;
+
+        $dataDepartment = $teamModel->findAll();
+        $dataEmployees = $usersModel->findAll();
+        $dataManagers = $managersModel->findAll();
+
+        // Loop through the employees to fetch and attach the manager's name
+        foreach ($dataEmployees as &$employee) {
+            foreach ($dataManagers as $manager) {
+                if ($manager['Team_id'] == $employee['Team_id']) {
+                    $employee['manager_name'] = $manager['username'];
+                    break;
+                }
+            }
+            // If no manager is found, assign a default value
+            if (!isset($employee['manager_name'])) {
+                $employee['manager_name'] = "No manager assigned";
+            }
+        }
+
+
+        // إرسال النتائج إلى الفيو
+        return view("admin_dashboard", [
+            'totalEmployeesCount' => $totalEmployeesCount,
+            'teamProgress' => $teamProgress,
+            'teamDocumentPercentages' => $teamDocumentPercentages,
+            'monthlyEarnings' => $monthlyEarnings,
+            'completedTasks' => $completedTasks,
+            'inProgressTasks' => $inProgressTasks,
+            'completedTasksPercentage' => $completedTasksPercentage,
+            'departments' => $dataDepartment,
+            'employees' => $dataEmployees,
+            'managers' => $dataManagers,
+        ]);
     }
+
+
 
     public function adminTeamManagement(): string
     {
