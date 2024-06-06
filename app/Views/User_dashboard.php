@@ -2,6 +2,21 @@
 
 <?= $this->section('userContent') ?>
 
+<div id="toastContainer" class="toast-container">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+        <div class="toast-header">
+            <strong class="mr-3">Notification</strong>
+            <small>Just now</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+
+        </div>
+    </div>
+</div>
+
 <div class="upper-section">
     <h1 class="welcome-header">Welcome To <span class="highlight">Translizer!</span></h1>
     <img src="../public/assets/img/logo-alternative.png" alt="" class="large-logo">
@@ -65,9 +80,9 @@
                     <div class="mb-3">
                         <label for="category" class="ml-0">Category:</label>
                         <select id="category" name="category" class="form-control form-control-solid">
-                        <?php foreach ($teams as $team): ?>
-                        <option value="<?= $team['Tid'] ?>"><?= $team['Team_name'] ?></option>
-                    <?php endforeach; ?>
+                            <?php foreach ($teams as $team): ?>
+                            <option value="<?= $team['Tid'] ?>"><?= $team['Team_name'] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
 
