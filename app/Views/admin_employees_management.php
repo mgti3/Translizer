@@ -10,11 +10,11 @@
 <div class="container-fluid mt-1">
     <div class="container-fluid mb-3 mx-0 px-0">
         <div class="card">
-        <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Register New Employee</h6>
-                </div>
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Register New Employee</h6>
+            </div>
             <div class="card-body">
-                
+
                 <form class="user" method="POST" action="Admin/addEmployee">
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -72,100 +72,136 @@
             <h6 class="m-0 font-weight-bold text-primary">Employees Information</h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
-                    aria-describedby="dataTable_info" style="width: 100%;">
-                    <thead>
-                        <tr role="row">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Position</th>
-                            <th>Team</th>
-                            <th>Manager</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Position</th>
-                            <th>Team</th>
-                            <th>Manager</th>
-                            <th>Actions</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <?php foreach ($managers as $manager): ?>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                        role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                        <thead>
+                            <tr role="row">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Position</th>
+                                <th>Team</th>
+                                <th>Manager</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
                             <tr>
-                                <td><?= $manager['manager_id'] ?></td>
-                                <td><?= $manager['username'] ?></td>
-                                <td><?= $manager['email'] ?></td>
-                                <td>Manager</td>
-                                <td><?= $manager['Team_id'] ?></td>
-                                <td><?= $manager['username'] ?></td>
-                                <td>
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item edit-btn"
-                                                data-id="<?= $manager['manager_id'] ?>"
-                                                data-name="<?= $manager['username'] ?>"
-                                                data-email="<?= $manager['email'] ?>" data-position="Manager"
-                                                data-team="<?= $manager['Team_id'] ?>"
-                                                data-manager="<?= $manager['username'] ?>">
-                                                <i class="fas fa-edit"></i> Edit
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Position</th>
+                                <th>Team</th>
+                                <th>Manager</th>
+                                <th>Actions</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <?php foreach ($managers as $manager): ?>
+                                <tr>
+                                    <td><?= $manager['manager_id'] ?></td>
+                                    <td><?= $manager['username'] ?></td>
+                                    <td><?= $manager['email'] ?></td>
+                                    <td>Manager</td>
+                                    <td>
+                                        <?php
+                                        // Fetch the team name based on Team_id
+                                        $teamName = '';
+                                        foreach ($departments as $department) {
+                                            if ($department['Tid'] == $manager['Team_id']) {
+                                                $teamName = $department['Team_name'];
+                                                break;
+                                            }
+                                        }
+                                        echo $teamName;
+                                        ?>
+                                    </td>
+                                    <td><?= $manager['username'] ?></td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="fas fa-ellipsis-v"></i>
                                             </a>
-                                            <a href="#" class="dropdown-item delete-btn"
-                                                data-id="<?= $manager['manager_id'] ?>">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="#" class="dropdown-item edit-btn"
+                                                    data-id="<?= $manager['manager_id'] ?>"
+                                                    data-name="<?= $manager['username'] ?>"
+                                                    data-email="<?= $manager['email'] ?>" data-position="1"
+                                                    data-team="<?= $manager['Team_id'] ?>"
+                                                    data-manager="<?= $manager['username'] ?>">/ <i class="fas fa-edit"></i>
+                                                    Edit
+                                                </a>
+                                                <a href="#" class="dropdown-item delete-btn"
+                                                    data-id="<?= $manager['manager_id'] ?>">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                        <?php foreach ($employees as $employee): ?>
-                            <td><?= $employee['User_id'] ?></td>
-                            <td><?= $employee['username'] ?></td>
-                            <td><?= $employee['email'] ?></td>
-                            <td><?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 2) ? 'Employee' : 'User') ?>
-                            </td>
-                            <td><?= $employee['Team_id'] ?></td>
-                            <td><?= $employee['manager_name'] ?></td> <!-- Added manager's name here -->
-                            <td>
-                                <div class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item edit-btn" data-id="<?= $employee['User_id'] ?>"
-                                            data-name="<?= $employee['username'] ?>" data-email="<?= $employee['email'] ?>"
-                                            data-position="<?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 2) ? 'Employee' : 'User') ?>"
-                                            data-team="<?= $employee['Team_id'] ?>"
-                                            data-manager="<?= ($employee['Role'] == 1) ? 'Admin' : (($employee['Role'] == 2) ? 'Manager' : 'Employee') ?>">
-                                            <i class="fas fa-edit"></i> Edit
-                                        </a>
-                                        <a href="#" class="dropdown-item delete-btn" data-id="<?= $employee['User_id'] ?>">
-                                            <i class="fas fa-trash"></i> Delete
-                                        </a>
-                                    </div>
-                                </div>
-                            </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+
+                            <?php foreach ($employees as $employee): ?>
+                                <tr>
+                                    <td><?= $employee['User_id'] ?></td>
+                                    <td><?= $employee['username'] ?></td>
+                                    <td><?= $employee['email'] ?></td>
+                                    <td><?= ($employee['Role'] == 0) ? 'Admin' : (($employee['Role'] == 1) ? 'Employee' : 'User') ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        // Check if Team_id or Team_name is null
+                                        if ($employee['Team_id'] === null) {
+                                            echo 'Translizer';
+                                        } else {
+                                            // Fetch the team name based on Team_id
+                                            $teamName = '';
+                                            foreach ($departments as $department) {
+                                                if ($department['Tid'] == $employee['Team_id']) {
+                                                    $teamName = $department['Team_name'];
+                                                    break;
+                                                }
+                                            }
+                                            echo $teamName;
+                                        }
+                                        ?>
+                                    </td>
+                                    <td><?= $employee['username'] ?></td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="#" class="dropdown-item edit-btn"
+                                                    data-id="<?= $employee['User_id'] ?>"
+                                                    data-name="<?= $employee['username'] ?>"
+                                                    data-email="<?= $employee['email'] ?>"
+                                                    data-position="<?= $employee['Role'] ?>"
+                                                    data-team="<?= $employee['Team_id'] ?>"
+                                                    data-manager="<?= $employee['username'] ?>">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                                <a href="<?= base_url('Admin/deleteUser/' . $employee['User_id']) ?>"
+                                                    class="dropdown-item delete-btn"
+                                                    onclick="return confirm('Are you sure you want to delete this user?');">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
 
 
-        >
     </div>
 </div>
 
