@@ -137,8 +137,21 @@ $(document).ready(function () {
                     ur.checked = false;
                     file.value = '';
 
+                    const toastContainer = document.getElementById('toastContainer');
+                    const toastElement = toastContainer.querySelector('.toast');
 
-                    $('#exampleModal').modal('show');
+                    document.querySelector('.toast-body').innerText = "Order Placed.";
+                    // Show the toast container
+                    toastContainer.classList.add('show');
+
+                    // Initialize and show the toast
+                    $(toastElement).toast('show');
+
+                    // Hide the toast container after 3 seconds
+                    setTimeout(() => {
+                        toastContainer.classList.remove('show');
+                    }, 5000);
+                    console.log("translation uploaded successfuly")
                 } else if (response.status === 'error') {
                     document.getElementById("errors").innerHTML = (response.validate);
                 }
@@ -178,7 +191,7 @@ $(document).ready(function () {
             document.getElementById("errors").innerHTML = errorMessage;
             return;
         }
-        
+
         let formData = new FormData(this);
         $.ajax({
             url: '/Translizer/public/reportSubmit',
@@ -189,6 +202,21 @@ $(document).ready(function () {
             processData: false,
             success: function (response) {
                 if (response.status === 'success') {
+
+                    const toastContainer = document.getElementById('toastContainer');
+                    const toastElement = toastContainer.querySelector('.toast');
+
+                    document.querySelector('.toast-body').innerText = "Report Submitted.";
+                    // Show the toast container
+                    toastContainer.classList.add('show');
+
+                    // Initialize and show the toast
+                    $(toastElement).toast('show');
+
+                    // Hide the toast container after 3 seconds
+                    setTimeout(() => {
+                        toastContainer.classList.remove('show');
+                    }, 5000);
                     document.getElementById("errors").innerHTML = "";
 
                     let title = document.getElementById('title');
@@ -198,7 +226,6 @@ $(document).ready(function () {
                     desc.value = '';
                     fileId.value = '';
 
-                    $('#exampleModal').modal('show');
                 } else if (response.status === 'error') {
                     document.getElementById("errors").innerHTML = (response.validate);
                 }

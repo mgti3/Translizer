@@ -150,9 +150,9 @@ class Manager extends BaseController
         $data = [
             'documents' => $documents,
             'employees' => $employees,
-            'documentsinfo' => $documentsinfo
+            'documentsinfo' => $documentsinfo,
+            'notification' => 1
         ];
-
 
         return view('manager_assignment', $data);
     }
@@ -165,8 +165,13 @@ class Manager extends BaseController
             $assignedTo = $this->request->getPost('assignedTo');
     
             if (is_numeric($taskName)) {
-                $documentsModel->update($taskName, ['employee_id' => $assignedTo]);
-                return redirect()->to(base_url('manager_assignment'))->with('message', 'Task assigned successfully.');
+                
+                if($documentsModel->update($taskName, ['employee_id' => $assignedTo])){
+                $session = \Config\Services::session();
+                $session->setFlashdata('notification', 'Form submitted successfully!');
+                sleep(4);
+                return redirect()->to(base_url('manager_assignment'))->with('success', 'Task assigned successfully.');
+            }
             } else {
                 return redirect()->back()->with('error', 'Task Name must content just a number.');
             }

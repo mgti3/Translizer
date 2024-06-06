@@ -2,6 +2,23 @@
 
 <?= $this->section('content') ?>
 
+<div id="toastContainer" class="toast-container">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+        <div class="toast-header">
+            <strong class="mr-3">Notification</strong>
+            <small>Just now</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+
+        </div>
+    </div>
+</div>
+
+
+
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Task Assignment</h1>
@@ -10,35 +27,40 @@
 <div class="container-fluid mt-5">
     <div class="card">
         <div class="card-header">
-            <form id="taskForm" action="<?= base_url('Manager/taskAssignment') ?>" method="POST" onsubmit="return validateForm()" class="form-inline">
+            <form id="taskForm" action="<?= base_url('Manager/taskAssignment') ?>" method="POST"
+                onsubmit="return validateForm()" class="form-inline">
                 <div class="form-group mr-2">
                     <label for="taskName" class="ml-0 mr-2">Task Name</label>
-                    <input type="text" class="form-control" id="taskName" name="taskName" onkeyup="filterTasks()" required>
+                    <input type="text" class="form-control" id="taskName" name="taskName" onkeyup="filterTasks()"
+                        required>
                 </div>
                 <div class="form-group mr-2">
                     <label for="assignedTo" class="mr-2">Assign To</label>
                     <select class="form-control" id="assignedTo" name="assignedTo" required>
                         <option value="" disabled selected>Select Employee</option>
                         <?php foreach ($employees as $employee): ?>
-                            <option value="<?= $employee['User_id'] ?>"><?= $employee['username'] ?></option>
+                        <option value="<?= $employee['User_id'] ?>"><?= $employee['username'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary ml-4">Assign Task</button>
+                <button id='sub-btn' type="submit" class="btn btn-primary ml-4">Assign Task</button>
             </form>
         </div>
         <div class="card-body">
             <p>Select the doc:</p>
             <ul class="list-group" id="taskList">
                 <?php foreach ($documents as $document): ?>
-                <li class="list-group-item mb-3 shadow-sm" style="border-radius: 10px;" data-doc-id="<?= $document['Document_id'] ?>" onclick="selectTask(this)">
+                <li class="list-group-item mb-3 shadow-sm" style="border-radius: 10px;"
+                    data-doc-id="<?= $document['Document_id'] ?>" onclick="selectTask(this)">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="./assets/img/logo-alternative.png" style="height: auto; width: 150px;" class="card-img" alt="Static Image">
+                            <img src="./assets/img/logo-alternative.png" style="height: auto; width: 150px;"
+                                class="card-img" alt="Static Image">
                             <hr class="my-2">
                         </div>
                         <div class="col-md-8">
-                            <h5 class="card-title"><?php echo $document['language']; ?> to <?php echo $document['target_language']; ?></h5>
+                            <h5 class="card-title"><?php echo $document['language']; ?> to
+                                <?php echo $document['target_language']; ?></h5>
                             <p class="card-text">Estimated Time: <?php echo $document['est_time']; ?> hours</p>
                             <p class="card-text">Cost: <?php echo $document['cost']; ?> USD</p>
                         </div>
@@ -85,7 +107,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                    <?php foreach ($documentsinfo as $document): ?>
+                        <?php foreach ($documentsinfo as $document): ?>
                         <tr>
                             <td><?= $document['Document_id'] ?></td>
                             <td><?= $document['employee_name'] ?></td>
@@ -138,7 +160,7 @@ function selectTask(element) {
 
     // الحصول على الـ ID للوثيقة
     let docId = element.getAttribute('data-doc-id');
-    
+
     // تعيين الـ ID في حقل الإدخال
     document.getElementById('taskName').value = docId;
 }

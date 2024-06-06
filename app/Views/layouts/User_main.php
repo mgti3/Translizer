@@ -20,7 +20,27 @@
     <!-- Custom styles for this template-->
     <link href="/Translizer/public/assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/Translizer/public/assets/css/style.css" rel="stylesheet">
+    <style>
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: -350px; /* Start off-screen */
+            z-index: 1050;
+            transition: right 0.5s ease-in-out;
+        }
 
+        .toast-container.show {
+            right: 20px; /* Slide in to this position */
+        }
+
+        .toast-header {
+            font-size: 20px;
+        }
+
+        .toast-body {
+            font-size: 16px;
+        }
+    </style>
 
 </head>
 
