@@ -11,6 +11,19 @@ use App\Models\usersModel;
 
 class Manager extends BaseController
 {
+    public function GetName()
+    {
+        $session = session();
+        $managername = $session->get('username');
+
+        $response = array(
+            'status' => 'success',
+            'name' => $managername,
+        );
+
+        return $this->response->setJSON($response);
+    }
+
     public function dashboard(): string
     {
         $session = session();
@@ -20,9 +33,9 @@ class Manager extends BaseController
         $teamId = $managerModel->where('manager_id', $managerId)->first()['Team_id'];
 
         $documentsModel = new OrderSubmission_model();
-        $userModel = new usersModel();
 
         // جلب الموظفين في نفس الفريق
+        $userModel = new usersModel();
         $employees = $userModel->where('Team_id', $teamId)->findAll();
 
         $progressData = [];
@@ -44,9 +57,47 @@ class Manager extends BaseController
             ];
         }
 
+        // الجزء الجديد المضاف
+        // حساب الوثائق للشهر الحالي
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+        $monthlyDocumentsCount = $documentsModel
+            ->where('MONTH(upload_date)', $currentMonth)
+            ->where('YEAR(upload_date)', $currentYear)
+            ->where('YEAR(upload_date)', $currentYear)
+            ->where('Team_id', $teamId)
+            ->countAllResults();
+
+        // حساب مجموع التكاليف للشهر الحالي
+        $monthlyEarnings = $documentsModel
+            ->selectSum('cost')
+            ->where('MONTH(upload_date)', $currentMonth)
+            ->where('YEAR(upload_date)', $currentYear)
+            ->where('Team_id', $teamId)
+            ->get()
+            ->getRow()
+            ->cost;
+
+        // حساب عدد الوثائق المكتملة للشهر الحالي
+        $completedTasksCount = $documentsModel
+            ->where('Team_id', $teamId)
+            ->where('state !=', 'Pending')
+            ->countAllResults();
+
+        // حساب عدد الوثائق القيد التقدم للشهر الحالي
+        $inProgressTasksCount = $documentsModel
+            ->where('Team_id', $teamId)
+            ->where('state', 'Pending')
+            ->countAllResults();
+
         $data = [
-            'progressData' => $progressData
+            'monthlyDocumentsCount' => $monthlyDocumentsCount,
+            'monthlyEarnings' => $monthlyEarnings,
+            'completedTasksCount' => $completedTasksCount,
+            'inProgressTasksCount' => $inProgressTasksCount,
+            'progressData' => $progressData // البيانات القديمة
         ];
+
         return view("manager_dashboard", $data);
     }
 
@@ -153,7 +204,7 @@ class Manager extends BaseController
 
     public function assignment()
     {
-        
+
         $session = session();
         $managerId = $session->get('user_id');
 
@@ -163,11 +214,11 @@ class Manager extends BaseController
         $documentsModel = new OrderSubmission_model();
         $documents = $documentsModel->where('employee_id', null)->where('Team_id', $teamId)->findAll();
         $documentsinfo = $documentsModel
-        ->select('documents.*, users.username as employee_name')
-        ->join('users', 'users.User_id = documents.employee_id', 'inner')
-        ->where('documents.Team_id', $teamId)
-        ->where('documents.employee_id IS NOT NULL')
-        ->findAll();
+            ->select('documents.*, users.username as employee_name')
+            ->join('users', 'users.User_id = documents.employee_id', 'inner')
+            ->where('documents.Team_id', $teamId)
+            ->where('documents.employee_id IS NOT NULL')
+            ->findAll();
 
         $userModel = new usersModel();
         $employees = $userModel->where('Team_id', $teamId)->findAll();
@@ -188,7 +239,7 @@ class Manager extends BaseController
         if ($this->request->getMethod() === 'POST') {
             $taskName = $this->request->getPost('taskName');
             $assignedTo = $this->request->getPost('assignedTo');
-    
+
             if (is_numeric($taskName)) {
                 $documentsModel->update($taskName, ['employee_id' => $assignedTo]);
                 return redirect()->to(base_url('manager_assignment'))->with('message', 'Task assigned successfully.');
@@ -196,7 +247,7 @@ class Manager extends BaseController
                 return redirect()->back()->with('error', 'Task Name must content just a number.');
             }
         }
-         return redirect()->to(base_url('manager_assignment'))->with('success', 'Team added successfully.');
+        return redirect()->to(base_url('manager_assignment'))->with('success', 'Team added successfully.');
     }
 
     public function ticketDetails($ticket_id)

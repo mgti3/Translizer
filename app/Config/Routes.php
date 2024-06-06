@@ -48,6 +48,7 @@ $routes->group('', ['filter' => 'auth:0'], function ($routes) {
     $routes->post('addEmployee', 'Admin::addEmployee');
     $routes->add('deleteUser', 'Admin::deleteUser');
     $routes->add('admin_team_management', 'Admin::addTeam');
+    $routes->add('adminName', 'Admin::GetName');
 });
 
 // Manager Routes (assuming manager user type is 2)
@@ -58,6 +59,7 @@ $routes->group('', ['filter' => 'auth:4'], function ($routes) {
     $routes->add('manager_ticketDetails/(:any)', 'Manager::ticketDetails/$1');
     $routes->add('load_tickets', 'Manager::load_tikcets');
     $routes->add('close_ticket', 'Manager::close_ticket');
+    $routes->add('managerName', 'Manager::GetName');
 });
 
 // Employee Routes (assuming employee user type is 3)

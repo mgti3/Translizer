@@ -349,7 +349,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
                                     src="/Translizer/public/assets/img/undraw_profile.svg">
                             </a>
@@ -459,7 +459,8 @@
     <script src="/Translizer/public/assets/js/index.js"></script>
     <script src="/Translizer/public/assets/js/load_tickets.js"></script>
     <script src="/Translizer/public/assets/js/clicked.js"></script>
-  
+    <script src="/Translizer/public/assets/js/name_manager.js"></script>
+
 </body>
 
 </html>

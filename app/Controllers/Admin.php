@@ -10,6 +10,19 @@ use App\Models\OrderSubmission_model;
 
 class Admin extends BaseController
 {
+
+    public function GetName()
+    {
+        $session = session();
+        $managername = $session->get('username');
+
+        $response = array(
+            'status' => 'success',
+            'name' => $managername,
+        );
+
+        return $this->response->setJSON($response);
+    }
     public function dashboard(): string
     {
         $usersModel = new usersModel();
