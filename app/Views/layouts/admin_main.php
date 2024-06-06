@@ -371,6 +371,10 @@
     <!-- Page level custom scripts -->
     <script src="./assets/js/demo/datatables-demo.js"></script>
 
+    <script src="/Translizer/public/assets/js/addEdit.js.js"></script>
+    <script src="/Translizer/public/assets/js/deleteEmployee.js"></script>
+    <script src="/Translizer/public/assets/js/editEmployee.js"></script>
+
 </body>
 
 </html>

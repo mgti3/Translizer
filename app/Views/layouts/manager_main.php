@@ -459,6 +459,7 @@
     <script src="/Translizer/public/assets/js/index.js"></script>
     <script src="/Translizer/public/assets/js/load_tickets.js"></script>
     <script src="/Translizer/public/assets/js/clicked.js"></script>
+  
 </body>
 
 </html>
