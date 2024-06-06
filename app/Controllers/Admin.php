@@ -136,7 +136,7 @@ class Admin extends BaseController
         }
 
 
-    return view("admin_employees_management", $data);
+        return view("admin_employees_management", $data);
     }
 
 
@@ -317,5 +317,7 @@ class Admin extends BaseController
         return redirect()->to(base_url('admin_employees_management'))->with('error', 'User or Manager not found.');
     }
 }
+
+
 
 
