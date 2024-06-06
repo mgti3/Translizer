@@ -21,6 +21,16 @@
     <link href="/Translizer/public/assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/Translizer/public/assets/css/styleiba.css">
 
+    <style>
+        .card {
+            margin: 10px;
+        }
+
+        .pagination {
+            margin-top: 20px;
+        }
+    </style>
+
 </head>
 
 <body id="page-top">
@@ -32,7 +42,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Translizer/public/manager_dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="/Translizer/public/manager_dashboard">
                 <div>
                     <img src="/Translizer/public/assets/img/logo.png"
                         style="height: auto; width: 70px; margin-top:10px; margin-bottom:10px;" alt="">
@@ -282,7 +293,8 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="/Translizer/public/assets/img/undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle"
+                                            src="/Translizer/public/assets/img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -293,7 +305,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="/Translizer/public/assets/img/undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle"
+                                            src="/Translizer/public/assets/img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -304,7 +317,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="/Translizer/public/assets/img/undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle"
+                                            src="/Translizer/public/assets/img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -336,7 +350,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="/Translizer/public/assets/img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle"
+                                    src="/Translizer/public/assets/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

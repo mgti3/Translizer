@@ -53,7 +53,11 @@ class User extends BaseController
         $session = \Config\Services::session();
         $user_id = $session->get('user_id');
 
-        $data['orders'] = $this->OrderSubmit->where('User_id', $user_id)->findAll();
+        //$data['orders'] = $this->OrderSubmit->where('User_id', $user_id)->findAll();
+        $data['orders'] = $this->OrderSubmit
+            ->where('User_id', $user_id)
+            ->where('Translation_path IS NOT NULL', null, false) // Adding the condition for translation_path not being NULL
+            ->findAll();
 
         return view("reports_page", $data);
     }

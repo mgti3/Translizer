@@ -9,8 +9,13 @@
 
 <div class="container-fluid fixed-container">
     <div class="row justify-content-start" id="listTickets">
-        
+
     </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center" id="pagination">
+            <!-- Pagination controls will be dynamically added here -->
+        </ul>
+    </nav>
 </div>
 
 
