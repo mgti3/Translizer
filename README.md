@@ -7,7 +7,7 @@ Translizer is a powerful web-based translation service designed for seamless doc
 
 ## Tech Stack
 
-- **Frontend**: HTML, JavaScript
+- **Frontend**: HTML, CSS, JavaScript
 - **Backend**: CodeIgniter (PHP Framework)
 - **Database**: MySQL
 
